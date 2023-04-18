@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import {DayPilot, DayPilotCalendar, DayPilotNavigator} from "@daypilot/daypilot-lite-react";
-import "./CalendarStyles.css";
+import {DayPilot, DayPilotCalendar} from "@daypilot/daypilot-lite-react";
+import "../Styling/CalendarStyles.css";
 
 
 //=============== Calendar Code Start ======================
