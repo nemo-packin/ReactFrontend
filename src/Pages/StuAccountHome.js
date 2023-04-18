@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {DayPilot, DayPilotCalendar} from "@daypilot/daypilot-lite-react";
 import "../Styling/CalendarStyles.css";
+import {Link} from 'react-router-dom'
 
 
 //=============== Calendar Code Start ======================
@@ -99,6 +100,12 @@ class Calendar extends Component {
   render() {
     return (
       <div style={styles.wrap}>
+        <div><Link to='/'>Landing Page</Link></div>
+        <div><Link to='/AdminHome'>Admin Home</Link></div>
+        <div><Link to='/SchedulerPage'>Scheduler Page</Link></div>
+            
+        
+        
         {/* <div style={styles.left}>
           <DayPilotNavigator
             selectMode={"week"}
