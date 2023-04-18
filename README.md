@@ -5,7 +5,8 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 ## Available Scripts
 
 ##########################################################
-## Required Installs
+
+    Required Installs
 
 npm install @daypilot/daypilot-lite-react
 
