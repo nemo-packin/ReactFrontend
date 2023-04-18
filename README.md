@@ -2,18 +2,14 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
-
-##########################################################
-
-    Required Installs
+## Required Installs
 
 npm install @daypilot/daypilot-lite-react
 
 NodeJS
   - Also needs added environment path variables changed
 
-##########################################################
+## Available Scripts
 
 In the project directory, you can run:
 
