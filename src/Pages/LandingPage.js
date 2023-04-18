@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom'
 
-const Home = () => {
+const LandingPage = () => {
   const [greeting, setGreeting] = useState('');
 
   useEffect(() => {
@@ -16,11 +17,16 @@ const Home = () => {
   }, []);
 
   return (
-    <div>
-      <h1>Home</h1>
+    <div className='content-center'>
+      <h1>LandingPage</h1>
       <p>{greeting}</p>
+      <h2>Pages you can go to!</h2>
+      <div><Link to='/Home'>Home</Link></div>
+      <div><Link to='/AdminHome'>Admin Home</Link></div>
+      <div><Link to='/SchedulerPage'>SchedulerPage</Link></div>
+      
     </div>
   );
 };
 
-export default Home;
+export default LandingPage;
