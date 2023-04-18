@@ -1,5 +1,5 @@
 import LandingPage from './Pages/LandingPage'
-import StuAccountHome from './Pages/StuAccountHome'
+import StudentHome from './Pages/StudentHome'
 import AdminHome from './Pages/AdminHome'
 import SchedulerPage from './Pages/SchedulerPage'
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
@@ -10,7 +10,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path='/' element={<LandingPage/>}></Route>
-          <Route path='/Home' element={<StuAccountHome/>}></Route>
+          <Route path='/Home' element={<StudentHome/>}></Route>
           <Route path='/AdminHome' element={<AdminHome/>}></Route>
           <Route path='/SchedulerPage' element={<SchedulerPage/>}></Route>
         </Routes>

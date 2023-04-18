@@ -21,7 +21,7 @@ const LandingPage = () => {
       <h1>LandingPage</h1>
       <p>{greeting}</p>
       <h2>Pages you can go to!</h2>
-      <div><Link to='/Home'>Home</Link></div>
+      <div><Link to='/Home'>Student Home</Link></div>
       <div><Link to='/AdminHome'>Admin Home</Link></div>
       <div><Link to='/SchedulerPage'>SchedulerPage</Link></div>
       
