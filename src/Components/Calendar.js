@@ -64,21 +64,22 @@ class Calendar extends Component {
         id: 1,
         text: "Event 1",
         start: "2023-03-07T10:30:00",
-        end: "2023-03-07T13:00:00"
+        end: "2023-03-07T13:00:00",
+        backColor: "#cc4125"
       },
       {
         id: 2,
         text: "Event 2",
         start: "2023-03-08T09:30:00",
         end: "2023-03-08T11:30:00",
-        backColor: "#6aa84f"
+        backColor: "#cc4125"
       },
       {
         id: 3,
         text: "Event 3",
         start: "2023-03-08T12:00:00",
         end: "2023-03-08T15:00:00",
-        backColor: "#f1c232"
+        backColor: "#cc4125"
       },
       {
         id: 4,
