@@ -1,16 +1,17 @@
 import React from 'react'
-import {Link} from 'react-router-dom'
 import Calendar from '../Components/Calendar'
 import AccountInfo from '../Components/AccountInfo'
+import NavBar from '../Components/NavBar';
 
 const AdminHome = () => {
     return(
         <div>
-            <div><Link to='/'>Landing Page</Link></div>
-            <div><Link to='/Home'>Student Home</Link></div>
-            <div><Link to='/SchedulerPage'>SchedulerPage</Link></div>         
+            <NavBar/>  
+            <div className = "page-title">
+                <h2>Administrator Home</h2>
+            </div>
+            <AccountInfo/>     
             <Calendar/>
-            <AccountInfo/>
         </div>
     )
 }

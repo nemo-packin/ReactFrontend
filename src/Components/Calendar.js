@@ -16,7 +16,8 @@ const styles = {
     },
     main: {
       flexGrow: "1",
-      float: "right"
+      float: "right",
+      boxShadow: "0 0 16px rgba(0, 0, 0, 0.2"
     }
 };
 

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import {Link} from 'react-router-dom'
 import Course from '../Components/Course'
+import NavBar from '../Components/NavBar';
 
 const SchedulerPage = () => {
     const [showComponent, setShowComponent] = useState(false);
@@ -11,11 +11,10 @@ const SchedulerPage = () => {
 
     return (
         <div>
-            <div><Link to='/'>Landing Page</Link></div>
-            <div><Link to='/Home'>Student Home</Link></div>
-            <div><Link to='/AdminHome'>Admin Home</Link></div>  
-            <p>Search Stuff Here!</p>
-
+            <NavBar/>
+            <div className = "page-title">
+                <h2>Search</h2>
+            </div>
             <div>
             <button onClick={handleClick}>Show Component</button>
             {showComponent && <Course />}

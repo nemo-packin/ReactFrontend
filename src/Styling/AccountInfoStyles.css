@@ -1,0 +1,27 @@
+.account {
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+    margin: 10px;
+    height: 500px;
+    float: left;
+    background-color: #fff; 
+    border-radius: 8px;
+    box-shadow: 0 0 16px rgba(0, 0, 0, 0.2);
+    padding: 24px; 
+    border: 2px solid #ccc;
+  }
+
+.account h2 {
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 16px;
+}
+
+.fields {
+    margin: 4px;
+}
+  
+.fields p {
+margin: 4px 0;
+}  
+  
