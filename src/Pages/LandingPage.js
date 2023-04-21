@@ -1,9 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom'
+import Login from '../Components/Login';
 
 const LandingPage = () => {
-  const [greeting, setGreeting] = useState('');
+  const [greeting, setGreeting] = useState('')
+  const [login, setLogin] = useState(false)
 
   useEffect(() => {
     // Fetch data from backend API when component mounts
@@ -24,7 +26,10 @@ const LandingPage = () => {
       <div><Link to='/Home'>Home</Link></div>
       <div><Link to='/AdminHome'>Admin Home</Link></div>
       <div><Link to='/SchedulerPage'>SchedulerPage</Link></div>
-      
+      <button onClick={() => { setLogin(!login) }}>sign in</button>
+      <>
+        {login ? <Login/> : <></>}
+      </>
     </div>
   );
 };
