@@ -3,17 +3,17 @@ import Calendar from '../Components/Calendar'
 import AccountInfo from '../Components/AccountInfo'
 import NavBar from '../Components/NavBar';
 
-const AdminHome = () => {
+const StudentHome = () => {
     return(
         <div>
-            <NavBar/>  
+            <NavBar/>
             <div className = "page-title">
-                <h2>Administrator Home</h2>
+                <h2>Student Home</h2>
             </div>
-            <AccountInfo/>     
+            <AccountInfo/>
             <Calendar/>
         </div>
     )
 }
 
-export default AdminHome;
+export default StudentHome;

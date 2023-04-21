@@ -1,7 +1,7 @@
 import React, { useRef, useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom'
-import Login from '../Components/Login';
+import NavBar from '../Components/NavBar';
 
 const LandingPage = () => {
   const [greeting, setGreeting] = useState('')
@@ -20,16 +20,16 @@ const LandingPage = () => {
 
   return (
     <div className='content-center'>
-      <h1>LandingPage</h1>
+      <NavBar/>
+      <div className = "page-title">
+          <h2>Landing Page</h2>
+      </div>
       <p>{greeting}</p>
       <h2>Pages you can go to!</h2>
       <div><Link to='/Home'>Home</Link></div>
       <div><Link to='/AdminHome'>Admin Home</Link></div>
       <div><Link to='/SchedulerPage'>SchedulerPage</Link></div>
-      <button onClick={() => { setLogin(!login) }}>sign in</button>
-      <>
-        {login ? <Login/> : <></>}
-      </>
+      
     </div>
   );
 };
