@@ -35,8 +35,6 @@ const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     login()
-    console.log("Successful login!")
-
   }
 
   return (

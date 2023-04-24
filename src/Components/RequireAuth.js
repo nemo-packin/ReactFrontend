@@ -3,36 +3,25 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 
 const RequireAuth = () => {
-    const [ auth, setAuth ] = useState(false);
+    const [auth, setAuth] = useState(true);
     const location = useLocation();
 
     useEffect(() => { // Use useEffect to fetch data and update auth state
-        function authenticate() {
-            let isAuth = false
-            axios.get('http://localhost:8080/api/auth')
-                .then(response => {
-                    // Handles the response
-                    if (response.data === true) {
-                        isAuth = true;
-                        console.log(`isAuth1: ${isAuth}`)
-                    } 
-                })
-                .catch(error => {
-                    // Handle the error here
-                    console.log(error);
-                });
-            setAuth(isAuth);
-            console.log(`isAuth: ${isAuth}`)
-        }
-
-        authenticate(); // Call the authenticate function
-        console.log(`Test: ${auth}`)
+        (async () => {
+            try {
+                const response = await axios.get('http://localhost:8080/api/auth');
+                console.log(`Beginning: ${response.data}`)
+                setAuth(response.data);
+            } catch (err) {
+                console.log('Error occured when fetching books');
+            }
+        })();
     }, []); // Empty array as dependency to run effect only once
 
     return (
         <>
-            {console.log("Here!")}
-            {console.log(auth)}
+            {console.log(`END: ${auth}`)}
+            {/* {setAuth(true)} */}
             {auth ? <Outlet /> : <Navigate to='/' state={{ from: location }} replace />}
         </>
     )
