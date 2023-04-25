@@ -1,7 +1,5 @@
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom'
-import NavBar from '../Components/NavBar';
 import Login from '../Components/Login';
 import Register from '../Components/Register';
 
@@ -21,6 +19,11 @@ const LandingPage = () => {
       });
   }, []);
 
+  function logout(){
+    axios.post('http://localhost:8080/api/logout')
+    console.log("You're logged out!")
+  }
+
   return (
     <div className='content-center'>
       <div className = "page-title">
@@ -35,6 +38,7 @@ const LandingPage = () => {
       <>
         {register ? <Register/> : <></>}
       </>
+      <button onClick={() => {logout()}}>Logout</button>
       
     </div>
   );

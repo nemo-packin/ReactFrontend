@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import Course from '../Components/Course'
-import NavBar from '../Components/NavBar';
 
 const SchedulerPage = () => {
     const [showComponent, setShowComponent] = useState(false);
