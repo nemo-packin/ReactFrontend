@@ -2,26 +2,27 @@ import { useLocation, Navigate, Outlet } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-const RequireAuth = () => {
+const RequireAuth = ({userType}) => {
     const [auth, setAuth] = useState(true);
     const location = useLocation();
 
     useEffect(() => { // Use useEffect to fetch data and update auth state
         (async () => {
             try {
-                const response = await axios.get('http://localhost:8080/api/auth');
-                console.log(`Beginning: ${response.data}`)
-                setAuth(response.data);
+                const authResponse = await axios.get('http://localhost:8080/api/auth');
+                const userTypeResponse = await axios.get('http://localhost:8080/api/userType')
+                if(!(authResponse.data === true && userType === 'student' && userTypeResponse.data === 'student') && 
+                !(authResponse.data === true && userType === 'admin' && userTypeResponse.data === 'admin')){
+                    setAuth(false);
+                }
             } catch (err) {
-                console.log('Error occured when fetching books');
+                console.log('Error occured when fetching login information');
             }
         })();
-    }, []); // Empty array as dependency to run effect only once
+    }, [userType]); // Empty array as dependency to run effect only once
 
     return (
         <>
-            {console.log(`END: ${auth}`)}
-            {/* {setAuth(true)} */}
             {auth ? <Outlet /> : <Navigate to='/' state={{ from: location }} replace />}
         </>
     )

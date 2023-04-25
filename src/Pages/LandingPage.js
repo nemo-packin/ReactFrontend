@@ -23,15 +23,10 @@ const LandingPage = () => {
 
   return (
     <div className='content-center'>
-      <NavBar/>
       <div className = "page-title">
           <h2>Landing Page</h2>
       </div>
       <p>{greeting}</p>
-      <h2>Pages you can go to!</h2>
-      <div><Link to='/StudentHome'>Home</Link></div>
-      <div><Link to='/AdminHome'>Admin Home</Link></div>
-      <div><Link to='/SchedulerPage'>SchedulerPage</Link></div>
       <button onClick={() => {setLogin(!login)}}>Sign in</button>
       <>
         {login ? <Login/> : <></>}

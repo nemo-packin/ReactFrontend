@@ -11,7 +11,6 @@ const SchedulerPage = () => {
 
     return (
         <div>
-            <NavBar/>
             <div className = "page-title">
                 <h2>Search</h2>
             </div>
