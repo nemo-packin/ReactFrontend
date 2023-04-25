@@ -52,7 +52,7 @@ const Register = () => {
         // console.log(result);
         // console.log(pwd);
         setValidPwd(result);
-        const match = pwd == confirmPwd;
+        const match = pwd === confirmPwd;
         setValidConfirm(match);
     }, [pwd, confirmPwd])
 

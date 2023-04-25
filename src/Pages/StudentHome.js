@@ -6,7 +6,6 @@ import NavBar from '../Components/NavBar';
 const StudentHome = () => {
     return(
         <div>
-            <NavBar/>
             <div className = "page-title">
                 <h2>Student Home</h2>
             </div>
