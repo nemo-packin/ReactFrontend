@@ -1,20 +1,18 @@
 import React, { useState } from "react";
 import Course from '../Components/Course'
+import SearchBox from "../Components/SearchBox";
 
 const SchedulerPage = () => {
     const [showComponent, setShowComponent] = useState(false);
-
-    const handleClick = () => {
-        setShowComponent(!showComponent);
-      };
 
     return (
         <div>
             <div className = "page-title">
                 <h2>Search</h2>
             </div>
+            <SearchBox/>
             <div>
-            <button onClick={handleClick}>Show Component</button>
+            <button onClick={() => setShowComponent(!showComponent)}>Show Component</button>
             {showComponent && <Course />}
             </div>
         </div>
