@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react'
 import axios from 'axios';
 import Course from '../Components/Course'
 
-const SearchBox = () => {
+const SearchBox = (courseClicked) => {
     const [displayResults, setDisplayResults] = useState()
     const [cc, setCC] = useState('')
     const [prof, setProf] = useState('')
@@ -29,22 +29,12 @@ const SearchBox = () => {
                 if(courseMap.has(courseCode)){
                     courseMap.delete(courseCode)
                     return <li key={courseCode}
-                            onClick={() => {setRevealedCourse(courseCode, course.prof, course.day, course.time)}}>{courseCode}</li>
+                            onClick={() => {courseClicked.courseClicked(courseCode, course.prof, course.day, course.time)}}>{courseCode}</li>
                 }
             }))
         }).catch(error => {
             console.log(error)
         })
-    }
-
-    function setRevealedCourse(coursecode, prof, day, time){
-        console.log(`You clicked on: ${coursecode}`)
-        setCC(coursecode)
-        setProf(prof)
-        setDay(day)
-        setTime(time)
-        setShowClass(true)
-
     }
 
     return(
@@ -57,7 +47,7 @@ const SearchBox = () => {
             />
             <ol>
                 {displayResults}
-                {showClass && <Course courseCode={cc} prof={prof} day={day} time={time}/>}
+                {console.log(courseClicked)}
             </ol>
         </div>
     )
