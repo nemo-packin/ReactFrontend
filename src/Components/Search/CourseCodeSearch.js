@@ -1,14 +1,9 @@
 import React, {useState, useEffect} from 'react'
 import axios from 'axios';
-import Course from '../Components/Course'
+import Course from '../Course'
 
-const SearchBox = (courseClicked) => {
+const CourseCodeSearch = (courseClicked) => {
     const [displayResults, setDisplayResults] = useState()
-    const [cc, setCC] = useState('')
-    const [prof, setProf] = useState('')
-    const [day, setDay] = useState('')
-    const [time, setTime] = useState('')
-    const [showClass, setShowClass] = useState(false)
 
     useEffect(() => {
         console.log(displayResults)
@@ -16,11 +11,10 @@ const SearchBox = (courseClicked) => {
 
     const getSearchResult = async (searchContent) => {
         console.log(`Search content: ${searchContent}`)
-        await axios.post('http://localhost:8080/api/searchResults', {
+        await axios.post('http://localhost:8080/api/ccSearchResults', {
             content: searchContent
         })
         .then(searchResults => {
-            // console.log(searchResults.data)
             const courseMap = new Map();
             searchResults.data.forEach((course, index) =>{
                 courseMap.set(course.courseCode, course)
@@ -47,10 +41,9 @@ const SearchBox = (courseClicked) => {
             />
             <ol>
                 {displayResults}
-                {console.log(courseClicked)}
             </ol>
         </div>
     )
 }
 
-export default SearchBox;
+export default CourseCodeSearch;
