@@ -1,21 +1,18 @@
 import React, {useState, useEffect} from 'react'
 import axios from 'axios';
-import { stringify } from 'qs';
+import Course from '../Components/Course'
 
 const SearchBox = () => {
-    const [displayResults, setDisplayResults] = useState([])
-    const [d, setD] = useState()
-    // const [s, setS] = useState('')
+    const [displayResults, setDisplayResults] = useState()
+    const [cc, setCC] = useState('')
+    const [prof, setProf] = useState('')
+    const [day, setDay] = useState('')
+    const [time, setTime] = useState('')
+    const [showClass, setShowClass] = useState(false)
 
     useEffect(() => {
-        console.log("HERE")
         console.log(displayResults)
     }, [displayResults])
-
-    useEffect(() => {
-        console.log("HERE (d)")
-        console.log(d)
-    }, [d])
 
     const getSearchResult = async (searchContent) => {
         console.log(`Search content: ${searchContent}`)
@@ -23,15 +20,31 @@ const SearchBox = () => {
             content: searchContent
         })
         .then(searchResults => {
-            console.log(searchResults.data)
-            const uniqueCourseCodes = [...new Set(searchResults.data.map((d) => d.courseCode))];
-
-            setD(uniqueCourseCodes.map((courseCode) => {
-                return <li key={courseCode}>{courseCode}</li>
-        }))
+            // console.log(searchResults.data)
+            const courseMap = new Map();
+            searchResults.data.forEach((course, index) =>{
+                courseMap.set(course.courseCode, course)
+            })
+            setDisplayResults(Array.from(courseMap).map(([courseCode, course]) => {
+                if(courseMap.has(courseCode)){
+                    courseMap.delete(courseCode)
+                    return <li key={courseCode}
+                            onClick={() => {setRevealedCourse(courseCode, course.prof, course.day, course.time)}}>{courseCode}</li>
+                }
+            }))
         }).catch(error => {
             console.log(error)
         })
+    }
+
+    function setRevealedCourse(coursecode, prof, day, time){
+        console.log(`You clicked on: ${coursecode}`)
+        setCC(coursecode)
+        setProf(prof)
+        setDay(day)
+        setTime(time)
+        setShowClass(true)
+
     }
 
     return(
@@ -43,7 +56,8 @@ const SearchBox = () => {
                 onChange={(e) => {getSearchResult(e.target.value)}}
             />
             <ol>
-                {d}
+                {displayResults}
+                {showClass && <Course courseCode={cc} prof={prof} day={day} time={time}/>}
             </ol>
         </div>
     )
