@@ -22,8 +22,11 @@ const styles = {
     }
 };
 
-class Calendar extends Component {
+function refreshPage() {
+  window.location.reload(false);
+}
 
+class Calendar extends Component { 
   constructor(props) {
     super(props);
     this.calendarRef = React.createRef();
@@ -82,13 +85,34 @@ class Calendar extends Component {
           console.log(e.data);
           dp.events.update(e);
         }
-      },      
+      },     
       eventDeleteHandling: "Enabled",
       onEventDelete: async args => {
+        const removeCourse = async () => {
+          console.log("YOU CLICKED A BUTTON")
+          await axios.post('http://localhost:8080/api/removeCourse', {
+            code: args.e.data.text
+          })
+            .then(result => {
+              console.log(result)
+              if (result.data !== true) {
+                console.log("FAILURE")
+              } else {
+                const dp = this.calendar;
+                const e = args.e;
+                dp.events.remove(e);
+                refreshPage()
+              }
+            }).catch(error => {
+              console.log(error)
+            })
+        }
         if(args.e.data.id === 9999) {
           const dp = this.calendar;
           const e = args.e;
           dp.events.remove(e);
+        } else {
+          removeCourse()
         }
       },
       onEventClick: async args => {
@@ -117,7 +141,7 @@ class Calendar extends Component {
         courseTimes: codesAndTimes.data[2],
         eventsSize: codesAndTimes.data[0].length
       })
-
+      console.log("Number of courses in schedule: " + this.state.courseCodes.length)
       var events = [];
       for(let i = 0; i < this.state.eventsSize; i++) {
         //Times
@@ -125,24 +149,35 @@ class Calendar extends Component {
         var endTime;
         //If the time is a short time add a 0 to the front
         if(this.state.courseTimes[i].charAt(1) === ':') {
+          //Short PM Start Times
           if(this.state.courseTimes[i].charAt(8) === 'P') {
             var n1 = 12 + parseInt(this.state.courseTimes[i].charAt(0))
             startTime = "T" + n1 + this.state.courseTimes[i].substring(1, 7);
           }
+          //Short AM Start Times
+          else {
+            startTime = "T0" + this.state.courseTimes[i].substring(0, 7);
+          }
           
-          //Check the ending time
+          //Short Start PM End times
           if(this.state.courseTimes[i].charAt(8) === 'P') {
-            if(this.state.courseTimes[i].charAt(12) === '2') {
+            if(this.state.courseTimes[i].charAt(12) === '2' && this.state.courseTimes[i].charAt(11) === '1') {
+              console.log("HERE 1")
               endTime = "T" + this.state.courseTimes[i].substring(11,19);
             }
             else{
               var n2 = 12 + parseInt(this.state.courseTimes[i].charAt(11))
+              console.log("HERE 2")
               endTime = "T" + n2 + this.state.courseTimes[i].substring(12, 18)
             }
+          } else if(this.state.courseTimes[i].charAt(12) === ":") {
+            console.log("HERE 3")
+            endTime = "T0" + this.state.courseTimes[i].substring(11, 18)
           }
         }
         else {
           startTime = "T" + this.state.courseTimes[i].substring(0, 8)
+          console.log("HERE 4")
           endTime = "T" + this.state.courseTimes[i].substring(12,20)
         }
 
@@ -169,9 +204,10 @@ class Calendar extends Component {
               break;
           }
         }
-        console.log(daysStrings)
-        console.log(startTime)
-        console.log(endTime)
+        console.log("Code: " + this.state.courseCodes[i])
+        console.log("Days: " + this.state.courseDays[i])
+        console.log("Start: " + startTime)
+        console.log("End: " + endTime)
         
         for(let x = 0; x < days; x++){
           events.push(
@@ -180,6 +216,8 @@ class Calendar extends Component {
               text: this.state.courseCodes[i],
               start: daysStrings[x] + startTime,
               end: daysStrings[x] + endTime,
+              // start: "2023-05-01T09:00:00",
+              // end: "2023-05-01T09:50:00",
               backColor: "#cc4125"
             })
         }
