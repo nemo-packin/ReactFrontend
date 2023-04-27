@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Course from '../Components/Course'
-import CourseCodeSearch from "../Components/Search/CourseCodeSearch";
+import CourseCodeSearch from "../Components/Search/Search";
 
 const SchedulerPage = () => {
     const [showComponent, setShowComponent] = useState(false);
