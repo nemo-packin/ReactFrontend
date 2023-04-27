@@ -1,7 +1,6 @@
 import React from 'react'
 import Calendar from '../Components/Calendar'
 import AccountInfo from '../Components/AccountInfo'
-import NavBar from '../Components/NavBar';
 
 const AdminHome = () => {
     return(

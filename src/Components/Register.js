@@ -14,6 +14,12 @@ const Register = () => {
 
     const userRef = useRef();
     const errRef = useRef();
+    //vairables for other account stuff input field
+    const [name, setName] = useState('');
+    const [iD, setID] = useState(0)
+    const [year, setYear] = useState(0)
+    const [major, setMajor] = useState('Undeclared')
+    const [minor, setMinor] = useState('Undeclared')
 
     // variables for username input field 
     const [user, setUser] = useState('');
@@ -48,9 +54,6 @@ const Register = () => {
     // checks if the password input fits the requirements
     useEffect(() => {
         const result = PASSWORD_REQ_REGEX.test(pwd);
-        // console.log(PASSWORD_REQ_REGEX.test('A!1abcdeft'))
-        // console.log(result);
-        // console.log(pwd);
         setValidPwd(result);
         const match = pwd === confirmPwd;
         setValidConfirm(match);
@@ -61,12 +64,15 @@ const Register = () => {
         setErrMsg('');
     }, [user, pwd, confirmPwd])
 
-    function submit(login) {
-        console.log(JSON.stringify(login))
-
+    function submit() {
         axios.post('http://localhost:8080/api/register', {
+            id: iD,
+            name: name,
             username: user,
-            password: pwd
+            password: pwd,
+            year: year,
+            major: major,
+            minor: minor
         })
             .then(response => {
                 // Handle the response data here
@@ -76,7 +82,6 @@ const Register = () => {
                 // Handle the error here
                 console.log(error)
             });
-
     }
 
 
@@ -97,19 +102,65 @@ const Register = () => {
                     <form onSubmit={handleSubmit(() => {
                         const v1 = USER_REQ_REGEX.test(user);
                         const v2 = PASSWORD_REQ_REGEX.test(pwd);
-                        if (!v1 || !v2 || pwd != confirmPwd) {
+                        if (!v1 || !v2 || pwd !== confirmPwd) {
                             return
                         }
                         console.log('submitting')
-                        const loginInfo = user + ':' + pwd
-
-                        const newLogin = {
-                            id: 123,//hashString(user),
-                            loginInfo
-                        }
-
-                        submit(newLogin);
+                        submit();
                     })}>
+                        <label htmlFor='name'>
+                            Name:
+                        </label>
+                        <input
+                            className='text-black'
+                            type='text'
+                            id='name'
+                            autoComplete='off'
+                            onChange={(e) => setName(e.target.value)}
+                            required
+                        />
+                        <label htmlFor='id'>
+                            ID:
+                        </label>
+                        <input
+                            className='text-black'
+                            type='number'
+                            id='id'
+                            autoComplete='off'
+                            onChange={(e) => setID(e.target.value)}
+                            required
+                        />
+                        <label htmlFor='year'>
+                            Graduation Year:
+                        </label>
+                        <input
+                            className='text-black'
+                            type='number'
+                            id='year'
+                            autoComplete='off'
+                            onChange={(e) => setYear(e.target.value)}
+                            required
+                        />
+                        <label htmlFor='major'>
+                            Major:
+                        </label>
+                        <input
+                            className='text-black'
+                            type='text'
+                            id='major'
+                            autoComplete='off'
+                            onChange={(e) => setMajor(e.target.value)}
+                        />
+                        <label htmlFor='minor'>
+                            Minor:
+                        </label>
+                        <input
+                            className='text-black'
+                            type='text'
+                            id='minor'
+                            autoComplete='off'
+                            onChange={(e) => setMinor(e.target.value)}
+                        />
                         <label htmlFor='username'>
                             Username:
                             <span className={validName ? 'valid' : 'hide'}>
