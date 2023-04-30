@@ -9,7 +9,6 @@ const Login = () => {
 
   const errRef = useRef()
   const userRef = useRef()
-
   const navigate = useNavigate();
 
   function login() {

@@ -6,14 +6,13 @@ const Course = (props) => {
   const { courseCode, prof, day, time } = props
   const { successfullyAdded, setSuccessfullyAdded } = useState(false)
   const addCourse = async () => {
-    console.log("YOU CLICKED A BUTTON")
     await axios.post('http://localhost:8080/api/addCourse', {
       courseCode: courseCode
     })
       .then(result => {
         console.log(result)
         if (result.data === true) {
-          //setSuccessfullyAdded(true)
+          // setSuccessfullyAdded(true)
         }else{
           console.log("FAILURE")
         }

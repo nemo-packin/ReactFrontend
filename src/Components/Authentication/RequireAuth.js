@@ -6,7 +6,8 @@ const RequireAuth = ({userType}) => {
     const [auth, setAuth] = useState(true);
     const location = useLocation();
 
-    useEffect(() => { // Use useEffect to fetch data and update auth state
+    // Use useEffect to fetch data and update auth state
+    useEffect(() => { 
         (async () => {
             try {
                 const authResponse = await axios.get('http://localhost:8080/api/auth');

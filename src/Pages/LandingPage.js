@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import Login from '../Components/Login';
-import Register from '../Components/Register';
+import Login from '../Components/Authentication/Login';
+import Register from '../Components/Authentication/Register';
 
 const LandingPage = () => {
   const [greeting, setGreeting] = useState('')

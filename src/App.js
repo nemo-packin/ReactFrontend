@@ -3,7 +3,7 @@ import StudentHome from './Pages/StudentHome'
 import AdminHome from './Pages/AdminHome'
 import SchedulerPage from './Pages/SchedulerPage'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import RequireAuth from './Components/RequireAuth'
+import RequireAuth from './Components/Authentication/RequireAuth'
 import NavBar from './Components/NavBar'
 
 function App() {

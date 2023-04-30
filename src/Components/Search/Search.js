@@ -31,6 +31,7 @@ const Search = (courseClicked) => {
         getSearchResult()
     }, [courseSearch, departmentFilter, timeFilter, dayFilter, profFilter, creditFilter])
 
+    // updates the search results so long as there is input from one of the filters
     async function getSearchResult() {
             // const filterVal = `course code_${courseSearch};department_${departmentFilter};time_${timeFilter};day_${dayFilter};prof_${profFilter};credit hours_${creditFilter}`
             const filterVal = `course code_${courseSearch};time_${timeFilter};day_${dayFilter};prof_${profFilter};credit hours_${creditFilter}`
@@ -60,6 +61,7 @@ const Search = (courseClicked) => {
 
     return (
         <div className=''>
+            {/* Filters */}
             <CourseSearch setCourseSearch={setCourseSearch} />
             {/* <DepartmentFilter setDepartmentFilter={setDepartmentFilter}/> */}
             <TimeFilter setTimeFilter={setTimeFilter}/>
