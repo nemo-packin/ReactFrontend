@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Course from '../Components/Course'
 import CourseCodeSearch from "../Components/Search/Search";
 
@@ -8,8 +8,20 @@ const SchedulerPage = () => {
     const [prof, setProf] = useState('')
     const [day, setDay] = useState('')
     const [time, setTime] = useState('')
+    const [listOfRecCourses, setListOfRecCourses] = useState([])
+    const [listOfSuggested, setListOfSuggested] = useState([])
+    const [showSuggested, setShowSuggested] = useState(false)
 
-    function courseClicked(courseCode, prof, day, time){
+    useEffect(() => {
+        setShowSuggested(true)
+        displaySuggested()
+    }, [listOfRecCourses])
+
+    useEffect(() => {
+        setShowSuggested(false)
+    }, [])
+
+    function courseClicked(courseCode, prof, day, time) {
         setShowComponent(true)
         setCC(courseCode)
         setProf(prof)
@@ -17,15 +29,38 @@ const SchedulerPage = () => {
         setTime(time)
     }
 
+    function displaySuggested() {
+        const courseMap = new Map();
+        listOfRecCourses.forEach((course, index) => {
+            courseMap.set(course.courseCode, course)
+        })
+
+        setListOfSuggested(Array.from(courseMap).map(([courseCode, course]) => {
+            if (courseMap.has(courseCode)) {
+                courseMap.delete(courseCode)
+                return <li key={courseCode}
+                    onClick={() => { courseClicked(courseCode, course.prof, course.day, course.time) }}>{courseCode}</li>
+            }
+        }))
+    }
+
     return (
         <div>
-            <div className = "page-title">
+            <div className="page-title">
                 <h2>Search</h2>
             </div>
-            <CourseCodeSearch courseClicked={courseClicked}/>
+            {console.log(`show: ${showSuggested}`)}
+            <div>Suggested Courses:</div>
+            {displaySuggested ? (
+                <ol>
+                    {listOfSuggested}
+                </ol>
+            ) : <></>}
+
+            <CourseCodeSearch courseClicked={courseClicked} />
             <div>
-            {/* <button onClick={() => setShowComponent(!showComponent)}>Show Component</button> */}
-            {showComponent && <Course courseCode={cc} prof={prof} day={day} time={time}/>}
+                {/* <button onClick={() => setShowComponent(!showComponent)}>Show Component</button> */}
+                {showComponent && <Course courseCode={cc} prof={prof} day={day} time={time} setListOfRecCourses={setListOfRecCourses} />}
             </div>
         </div>
     )
