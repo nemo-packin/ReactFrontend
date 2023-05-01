@@ -7,6 +7,7 @@ const LandingPage = () => {
   const [greeting, setGreeting] = useState('')
   const [login, setLogin] = useState(false)
   const [register, setRegister] = useState(false)
+  const [logoutMsg, setLogoutMsg] = useState(false)
 
   useEffect(() => {
     // Fetch data from backend API when component mounts
@@ -21,24 +22,28 @@ const LandingPage = () => {
 
   function logout(){
     axios.post('http://localhost:8080/api/logout')
-    console.log("You're logged out!")
+    setLogoutMsg(true)
   }
 
   return (
     <div className='content-center'>
       <div className = "page-title">
-          <h2>Landing Page</h2>
+          <h1>Landing Page</h1>
       </div>
       <p>{greeting}</p>
-      <button onClick={() => {setLogin(!login)}}>Sign in</button>
+      <button className='bg-red-600 m-2 w-100 rounded-none' onClick={() => {
+        setLogoutMsg(false)
+        setLogin(!login)
+        }}>Sign in</button>
       <>
         {login ? <Login/> : <></>}
       </>
-      <button onClick={() => {setRegister(!register)}}>Register</button>
+      <button className='bg-red-600 m-2 w-100 rounded-none' onClick={() => {setRegister(!register)}}>Register</button>
       <>
         {register ? <Register/> : <></>}
       </>
-      <button onClick={() => {logout()}}>Logout</button>
+      <button className='bg-red-600 m-2 w-100 rounded-none' onClick={() => {logout()}}>Logout</button>
+        {logoutMsg ? <p>You logout out!</p> : <></>}
       
     </div>
   );

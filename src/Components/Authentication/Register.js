@@ -90,9 +90,9 @@ const Register = () => {
             {success ? (
                 <section>
                     <h1>Account Created Successfully!</h1>
-                    <p>
+                    {/* <p>
                         <Link to='/'>Sign In</Link>
-                    </p>
+                    </p> */}
                 </section>
             ) : (
                 <section>
@@ -107,147 +107,174 @@ const Register = () => {
                         }
                         console.log('submitting')
                         submit();
+                        setSuccess(true)
                     })}>
-                        <label htmlFor='name'>
-                            Name:
-                        </label>
-                        <input
-                            className='text-black'
-                            type='text'
-                            id='name'
-                            autoComplete='off'
-                            onChange={(e) => setName(e.target.value)}
-                            required
-                        />
-                        <label htmlFor='id'>
-                            ID:
-                        </label>
-                        <input
-                            className='text-black'
-                            type='number'
-                            id='id'
-                            autoComplete='off'
-                            onChange={(e) => setID(e.target.value)}
-                            required
-                        />
-                        <label htmlFor='year'>
-                            Graduation Year:
-                        </label>
-                        <input
-                            className='text-black'
-                            type='number'
-                            id='year'
-                            autoComplete='off'
-                            onChange={(e) => setYear(e.target.value)}
-                            required
-                        />
-                        <label htmlFor='major'>
-                            Major:
-                        </label>
-                        <input
-                            className='text-black'
-                            type='text'
-                            id='major'
-                            autoComplete='off'
-                            onChange={(e) => setMajor(e.target.value)}
-                        />
-                        <label htmlFor='minor'>
-                            Minor:
-                        </label>
-                        <input
-                            className='text-black'
-                            type='text'
-                            id='minor'
-                            autoComplete='off'
-                            onChange={(e) => setMinor(e.target.value)}
-                        />
-                        <label htmlFor='username'>
-                            Username:
-                            <span className={validName ? 'valid' : 'hide'}>
-                                <FontAwesomeIcon icon={faCheck} />
-                            </span>
-                            <span className={validName || !user ? 'hide' : 'invalid'}>
-                                <FontAwesomeIcon icon={faTimes} />
-                            </span>
-                        </label>
-                        <input
-                            className='text-black'
-                            type='text'
-                            id='username'
-                            ref={userRef}
-                            autoComplete='off'
-                            onChange={(e) => setUser(e.target.value)}
-                            required
-                            aria-invalid={validName ? 'false' : 'true'}
-                            aria-describedby='uidnote'
-                            onFocus={() => setUserFocus(true)}
-                            onBlur={() => setUserFocus(false)}
-                        />
-                        <p id='uidnote' className={userFocus && !user && !validName ? 'instructions' : 'offscreen'}>
-                            <FontAwesomeIcon icon={faInfoCircle} />
-                            4 to 24 characters. <br />
-                            Must begin with a letter. <br />
-                            Letters, numbers, underscores, hyphens allowed.
-                        </p>
-                        <label htmlFor='password'>
-                            Password:
-                            <span className={validPwd ? 'valid' : 'hide'}>
-                                <FontAwesomeIcon icon={faCheck} />
-                            </span>
-                            <span className={validPwd || !pwd ? 'hide' : 'invalid'}>
-                                <FontAwesomeIcon icon={faTimes} />
-                            </span>
-                        </label>
-                        <input
-                            className='text-black'
-                            type='password'
-                            id='password'
-                            onChange={(e) => setPwd(e.target.value)}
-                            required
-                            aria-invalid={validPwd ? 'false' : 'true'}
-                            aria-describedby='pwdnote'
-                            onFocus={() => setPwdFocus(true)}
-                            onBlur={() => setPwdFocus(false)}
-                        />
-                        <p id='pwdnote' className={pwdFocus && !validPwd ? 'instructions' : 'offscreen'}>
-                            <FontAwesomeIcon icon={faInfoCircle} />
-                            8 to 24 characters. <br />
-                            Must include uppercase and lowercase letters, a number and a special character. <br />
-                            Allowed special characters: <span aria-label='exclamation mark'>!</span> <span aria-label='at symbol'>@</span>
-                            <span aria-label='hashtag'>#</span> <span aria-label='dollar sign'>$</span> <span aria-label='percent'>%</span>
-                            <span aria-label='and symbol'>&</span>
-                        </p>
-                        <label htmlFor='confirm-pass'>
-                            Confirm Password:
-                            <span className={validConfirmPwd && confirmPwd ? 'valid' : 'hide'}>
-                                <FontAwesomeIcon icon={faCheck} />
-                            </span>
-                            <span className={validConfirmPwd || !confirmPwd ? 'hide' : 'invalid'}>
-                                <FontAwesomeIcon icon={faTimes} />
-                            </span>
-                        </label>
-                        <input
-                            className='text-black'
-                            type='password'
-                            id='confirm-pass'
-                            onChange={(e) => setConfirmPwd(e.target.value)}
-                            required
-                            aria-invalid={validConfirmPwd ? 'false' : 'true'}
-                            aria-describedby='confirmnote'
-                            onFocus={() => setConfirmFocus(true)}
-                            onBlur={() => setConfirmFocus(false)}
-                        />
-                        <p id='confirmnote' className={confirmPwdFocus && !validConfirmPwd ? 'instructions' : 'offscreen'}>
-                            <FontAwesomeIcon icon={faInfoCircle} />
-                            Must match the first password input field
-                        </p>
-                        <button type='submit' disabled={!validName || !validPwd || !validConfirmPwd ? true : false}>Sign Up</button>
+                        <div>
+                            <label htmlFor='name'>
+                                Name:
+                            </label>
+                            <input
+                                className='text-black border-solid border-2 border-grey-light'
+                                type='text'
+                                id='name'
+                                autoComplete='off'
+                                onChange={(e) => setName(e.target.value)}
+                                required
+                            />
+                        </div>
+
+                        <div>
+                            <label htmlFor='id'>
+                                ID:
+                            </label>
+                            <input
+                                className='text-black border-solid border-2 border-grey-light'
+                                type='number'
+                                id='id'
+                                autoComplete='off'
+                                onChange={(e) => setID(e.target.value)}
+                                required
+                            />
+                        </div>
+                        <div>
+                            <label htmlFor='year'>
+                                Graduation Year:
+                            </label>
+                            <input
+                                className='text-black border-solid border-2 border-grey-light'
+                                type='number'
+                                id='year'
+                                autoComplete='off'
+                                onChange={(e) => setYear(e.target.value)}
+                                required
+                            />
+                        </div>
+
+                        <div>
+                            <label htmlFor='major'>
+                                Major:
+                            </label>
+                            <input
+                                className='text-black border-solid border-2 border-grey-light'
+                                type='text'
+                                id='major'
+                                autoComplete='off'
+                                onChange={(e) => setMajor(e.target.value)}
+                            />
+                        </div>
+
+                        <div>
+                            <label htmlFor='minor'>
+                                Minor:
+                            </label>
+                            <input
+                                className='text-black border-solid border-2 border-grey-light'
+                                type='text'
+                                id='minor'
+                                autoComplete='off'
+                                onChange={(e) => setMinor(e.target.value)}
+                            />
+                        </div>
+
+                        {/* Username */}
+                        <div>
+                            <label htmlFor='username'>
+                                Username:
+                                <span className={validName ? 'valid' : 'hide'}>
+                                    <FontAwesomeIcon icon={faCheck} />
+                                </span>
+                                <span className={validName || !user ? 'hide' : 'invalid'}>
+                                    <FontAwesomeIcon icon={faTimes} />
+                                </span>
+                            </label>
+                            <input
+                                className='text-black border-solid border-2 border-grey-light'
+                                type='text'
+                                id='username'
+                                ref={userRef}
+                                autoComplete='off'
+                                onChange={(e) => setUser(e.target.value)}
+                                required
+                                aria-invalid={validName ? 'false' : 'true'}
+                                aria-describedby='uidnote'
+                                onFocus={() => setUserFocus(true)}
+                                onBlur={() => setUserFocus(false)}
+                            />
+                            <p id='uidnote' className={userFocus && !user && !validName ? 'instructions' : 'offscreen'}>
+                                <FontAwesomeIcon icon={faInfoCircle} />
+                                4 to 24 characters. <br />
+                                Must begin with a letter. <br />
+                                Letters, numbers, underscores, hyphens allowed.
+                            </p>
+                        </div>
+
+                        {/* Password */}
+                        <div>
+                            <label htmlFor='password'>
+                                Password:
+                                <span className={validPwd ? 'valid' : 'hide'}>
+                                    <FontAwesomeIcon icon={faCheck} />
+                                </span>
+                                <span className={validPwd || !pwd ? 'hide' : 'invalid'}>
+                                    <FontAwesomeIcon icon={faTimes} />
+                                </span>
+                            </label>
+                            <input
+                                className='text-black border-solid border-2 border-grey-light'
+                                type='password'
+                                id='password'
+                                onChange={(e) => setPwd(e.target.value)}
+                                required
+                                aria-invalid={validPwd ? 'false' : 'true'}
+                                aria-describedby='pwdnote'
+                                onFocus={() => setPwdFocus(true)}
+                                onBlur={() => setPwdFocus(false)}
+                            />
+                            <p id='pwdnote' className={pwdFocus && !validPwd ? 'instructions' : 'offscreen'}>
+                                <FontAwesomeIcon icon={faInfoCircle} />
+                                8 to 24 characters. <br />
+                                Must include uppercase and lowercase letters, a number and a special character. <br />
+                                Allowed special characters: <span aria-label='exclamation mark'>!</span> <span aria-label='at symbol'>@</span>
+                                <span aria-label='hashtag'>#</span> <span aria-label='dollar sign'>$</span> <span aria-label='percent'>%</span>
+                                <span aria-label='and symbol'>&</span>
+                            </p>
+                        </div>
+
+                        <div>
+                            <label htmlFor='confirm-pass'>
+                                Confirm Password:
+                                <span className={validConfirmPwd && confirmPwd ? 'valid' : 'hide'}>
+                                    <FontAwesomeIcon icon={faCheck} />
+                                </span>
+                                <span className={validConfirmPwd || !confirmPwd ? 'hide' : 'invalid'}>
+                                    <FontAwesomeIcon icon={faTimes} />
+                                </span>
+                            </label>
+                            <input
+                                className='text-black border-solid border-2 border-grey-light'
+                                type='password'
+                                id='confirm-pass'
+                                onChange={(e) => setConfirmPwd(e.target.value)}
+                                required
+                                aria-invalid={validConfirmPwd ? 'false' : 'true'}
+                                aria-describedby='confirmnote'
+                                onFocus={() => setConfirmFocus(true)}
+                                onBlur={() => setConfirmFocus(false)}
+                            />
+                            <p id='confirmnote' className={confirmPwdFocus && !validConfirmPwd ? 'instructions' : 'offscreen'}>
+                                <FontAwesomeIcon icon={faInfoCircle} />
+                                Must match the first password input field
+                            </p>
+                        </div>
+
+                        <button type='submit' className='bg-green-600 m-2 w-100 rounded-none' disabled={!validName || !validPwd || !validConfirmPwd ? true : false}>Sign Up</button>
                     </form>
+                    {}
                     {/* <p>
                         Already registered? <br />
                         <span className='line'> */}
-                            {/* put router link here */}
-                            {/* <Link to='/'>Sign In</Link>
+                    {/* put router link here */}
+                    {/* <Link to='/'>Sign In</Link>
                         </span>
                     </p> */}
                 </section>

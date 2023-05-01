@@ -58,10 +58,8 @@ const SchedulerPage = () => {
             ) : <></>}
 
             <Search courseClicked={courseClicked} />
-            <div>
-                {/* <button onClick={() => setShowComponent(!showComponent)}>Show Component</button> */}
-                {showComponent && <Course courseCode={cc} prof={prof} day={day} time={time} setListOfRecCourses={setListOfRecCourses} />}
-            </div>
+            {/* <button onClick={() => setShowComponent(!showComponent)}>Show Component</button> */}
+            {showComponent && <Course courseCode={cc} prof={prof} day={day} time={time} setListOfRecCourses={setListOfRecCourses} />}
         </div>
     )
 }

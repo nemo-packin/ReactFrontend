@@ -6,7 +6,7 @@ const StudentHome = () => {
     return(
         <div>
             <div className = "page-title">
-                <h2>Student Home</h2>
+                <h2 className=''>Student Home</h2>
             </div>
             <AccountInfo/>
             <Calendar/>
