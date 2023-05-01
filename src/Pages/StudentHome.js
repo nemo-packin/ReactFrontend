@@ -1,17 +1,38 @@
-import React from 'react'
-import Calendar from '../Components/Calendar'
-import AccountInfo from '../Components/AccountInfo'
+import React, { useState } from 'react';
+import "../Styling/HomeStyles.css";
+import Calendar from '../Components/Calendar';
+import AccountInfo from '../Components/AccountInfo';
+import StatusSheet from '../Components/StatusSheet';
 
 const StudentHome = () => {
-    return(
-        <div>
-            <div className = "page-title">
-                <h2 className=''>Student Home</h2>
-            </div>
-            <AccountInfo/>
-            <Calendar/>
-        </div>
-    )
-}
+  const [showCalendar, setShowCalendar] = useState(true);
+  const [showStatusSheet, setShowStatusSheet] = useState(false);
+
+  const handleCalendarClick = () => {
+    setShowCalendar(true);
+    setShowStatusSheet(false);
+  };
+
+  const handleStatusSheetClick = () => {
+    setShowStatusSheet(true);
+    setShowCalendar(false);
+  };
+
+  return (
+    <div>
+      <div className="page-title">
+        <h2>Student Home</h2>
+      </div>
+      <div className="buttonsToggle">
+        <button onClick={handleCalendarClick}>Calendar</button>
+        <button onClick={handleStatusSheetClick}>Status Sheet</button>
+      </div>
+      <AccountInfo/>
+      {showCalendar && <Calendar/>}
+      {showStatusSheet && <StatusSheet/>}
+    </div>
+  );
+};
 
 export default StudentHome;
+

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import "../Styling/LandingPageStyles.css";
 import Login from '../Components/Authentication/Login';
 import Register from '../Components/Authentication/Register';
 
