@@ -22,14 +22,14 @@ const NewSchedule = (props) => {
     return (
         <div className="newSchedule">
             <label htmlFor='nameForSchedule'>Name for new schedule: </label>
-            <input type='text' id='nameForSchedule' onChange={(e) => {
+            <input type='text' className='text-black border-solid border-2 border-grey-light' id='nameForSchedule' onChange={(e) => {
                 setName(e.target.value)
             }} />
             <label htmlFor='semesterForSchedule'>Semester for new schedule: </label>
-            <input type='text' id='semesterForSchedule' onChange={(e) => {
+            <input type='text' className='text-black border-solid border-2 border-grey-light' id='semesterForSchedule' onChange={(e) => {
                 setSemester(e.target.value)
             }} />
-            <button onClick={() => {newSchedule()}}>Make New Schedule</button>
+            <button className='bg-green-600 m-2 w-100 rounded-none' onClick={() => {newSchedule()}}>Make New Schedule</button>
         </div>
     )
 }

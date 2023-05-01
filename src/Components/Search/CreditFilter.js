@@ -4,7 +4,7 @@ const CreditFilter = (props) => {
     return(
         <div className=''>
             <input
-                className=''
+                className='text-black border-solid border-2 border-grey-light'
                 type='search'
                 placeholder='Credit Filter'
                 onChange={(e) => {

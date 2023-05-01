@@ -43,7 +43,7 @@ const Login = () => {
       <form onSubmit={handleLogin}>
         <label htmlFor='username'>Username:</label>
         <input
-          className='text-black'
+          className='text-black border-solid border-2 border-grey-light'
           type='text'
           id='username'
           ref={userRef}
@@ -54,7 +54,7 @@ const Login = () => {
         />
         <label htmlFor='password'>Password:</label>
         <input
-          className='text-black'
+          className='text-black border-solid border-2 border-grey-light'
           type='password'
           id='password'
           autoComplete='off'
@@ -62,7 +62,7 @@ const Login = () => {
           value={pwd}
           required
         />
-        <button>Sign In</button>
+        <button className='bg-green-600 m-2 w-100 rounded-none'>Sign In</button>
       </form>
     </section>
   )
