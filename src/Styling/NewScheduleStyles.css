@@ -1,0 +1,45 @@
+.newSchedule {
+    display: flex;
+    flex-direction: column;
+    width: 47%;
+    margin: 10px;
+    margin-left: 30px;
+    height: 500px;
+    float: left;
+    background-color: #fff; 
+    border-radius: 8px;
+    box-shadow: 0 0 16px rgba(0, 0, 0, 0.2);
+    padding: 24px; 
+    border: 2px solid #ccc;
+  }
+
+  .newSchedule input {
+    border: 1px solid black;
+    margin-bottom: 16px;
+    margin: 20px;
+    padding: 10px;
+  }
+  
+  .newSchedule input:hover {
+    border: 1px solid black;
+  }
+
+  .newSchedule button {
+    background-color: #da1e1eef;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 20px;
+    margin-right: 10px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  .newSchedule button:last-child {
+    margin-right: 0;
+  }
+  
+  .newSchedule button:hover {
+    background-color: #a31515ef;
+  }
+  

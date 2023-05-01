@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import "../Styling/NewScheduleStyles.css";
 import axios from 'axios'
 
 const NewSchedule = (props) => {
@@ -19,7 +20,7 @@ const NewSchedule = (props) => {
     }
 
     return (
-        <div className=''>
+        <div className="newSchedule">
             <label htmlFor='nameForSchedule'>Name for new schedule: </label>
             <input type='text' id='nameForSchedule' onChange={(e) => {
                 setName(e.target.value)

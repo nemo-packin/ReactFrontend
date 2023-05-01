@@ -30,8 +30,7 @@ nav div a {
 }
 
 nav div a:hover {
-  background-color: rgba(249, 34, 34, 0.749);
-  color: #2c2c2c;
+  background-color: #a31515ef;
 }
 
 body::-webkit-scrollbar {

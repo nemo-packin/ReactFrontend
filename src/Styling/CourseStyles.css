@@ -1,13 +1,17 @@
 .box1 {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh ;
-}
+    position: fixed;
+    top: 50%;
+    right: 0;
+    transform: translateY(-100%);
+    margin: 150px;
+  }
+  
   
 .box2 {
     background-color: #fff; 
     border-radius: 8px;
     box-shadow: 0 0 16px rgba(0, 0, 0, 0.2);
     padding: 24px; 
+    height: 200px;
+    width: 400px;
 }

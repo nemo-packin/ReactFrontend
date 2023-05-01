@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import "../Styling/LandingPageStyles.css";
 import Login from '../Components/Authentication/Login';
 import Register from '../Components/Authentication/Register';
 
@@ -27,7 +28,7 @@ const LandingPage = () => {
   return (
     <div className='content-center'>
       <div className = "page-title">
-          <h2>Landing Page</h2>
+          <h2>Login Page</h2>
       </div>
       <p>{greeting}</p>
       <button onClick={() => {setLogin(!login)}}>Sign in</button>

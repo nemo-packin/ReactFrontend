@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import "../Styling/SearchStyles.css";
 import Course from '../Components/Course'
 import Search from "../Components/Search/Search";
 
@@ -45,7 +46,7 @@ const SchedulerPage = () => {
     }
 
     return (
-        <div>
+        <div className = "search-box">
             <div className="page-title">
                 <h2>Search</h2>
             </div>
