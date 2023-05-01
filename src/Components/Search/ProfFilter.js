@@ -4,7 +4,7 @@ const ProfFilter = (props) => {
     return(
         <div className=''>
             <input
-                className=''
+                className='text-black border-solid border-2 border-grey-light'
                 type='search'
                 placeholder='Professor Filter'
                 onChange={(e) => {

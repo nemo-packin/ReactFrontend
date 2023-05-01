@@ -5,6 +5,7 @@ import SchedulerPage from './Pages/SchedulerPage'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import RequireAuth from './Components/Authentication/RequireAuth'
 import NavBar from './Components/NavBar'
+import './index.css'
 
 function App() {
 
