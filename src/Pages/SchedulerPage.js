@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Course from '../Components/Course'
-import CourseCodeSearch from "../Components/Search/Search";
+import Search from "../Components/Search/Search";
 
 const SchedulerPage = () => {
     const [showComponent, setShowComponent] = useState(false);
@@ -57,7 +57,7 @@ const SchedulerPage = () => {
                 </ol>
             ) : <></>}
 
-            <CourseCodeSearch courseClicked={courseClicked} />
+            <Search courseClicked={courseClicked} />
             <div>
                 {/* <button onClick={() => setShowComponent(!showComponent)}>Show Component</button> */}
                 {showComponent && <Course courseCode={cc} prof={prof} day={day} time={time} setListOfRecCourses={setListOfRecCourses} />}

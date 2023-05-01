@@ -16,7 +16,6 @@ const Search = (courseClicked) => {
     const [profFilter, setProfFilter] = useState('')
     const [creditFilter, setCreditFilter] = useState('')
 
-
     useEffect(() => {
         console.log(displayResults)
     }, [displayResults])
