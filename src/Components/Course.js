@@ -1,20 +1,24 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import "../Styling/CourseStyles.css";
 import axios from "axios";
 
 const Course = (props) => {
-  const { courseCode, prof, day, time } = props
+  const { courseCode, prof, day, time, setListOfRecCourses } = props
   const { successfullyAdded, setSuccessfullyAdded } = useState(false)
+
+  useEffect(() => {
+    // setSuccessfullyAdded(false)
+  }, [courseCode])
+
   const addCourse = async () => {
     await axios.post('http://localhost:8080/api/addCourse', {
       courseCode: courseCode
     })
       .then(result => {
-        console.log(result)
-        if (result.data === true) {
-          // setSuccessfullyAdded(true)
+        if (result.data.length > 0) {
+          setListOfRecCourses(result.data)
         }else{
-          console.log("FAILURE")
+          setSuccessfullyAdded(true)
         }
       }).catch(error => {
         console.log(error)
@@ -27,6 +31,7 @@ const Course = (props) => {
         <p>Instructor: {prof}</p>
         <p>Schedule: {day} {time}</p>
         <button onClick={() => addCourse()}>Add to Schedule</button>
+        {successfullyAdded && <div>Successfully added the course!</div>}
       </div>
     </div>
   );

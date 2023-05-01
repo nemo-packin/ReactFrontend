@@ -16,7 +16,6 @@ const Search = (courseClicked) => {
     const [profFilter, setProfFilter] = useState('')
     const [creditFilter, setCreditFilter] = useState('')
 
-
     useEffect(() => {
         console.log(displayResults)
     }, [displayResults])
@@ -38,7 +37,7 @@ const Search = (courseClicked) => {
             console.log(`Filters: ${filterVal}`)
             // let usefulFilters = (courseSearch === '' ? 0 : 1) + (departmentFilter === '' ? 0 : 1) + (timeFilter === '' ? 0 : 1) + (dayFilter === '' ? 0 : 1) + (profFilter === '' ? 0 : 1) + (creditFilter === '' ? 0 : 1)
             let usefulFilters = (courseSearch === '' ? 0 : 1) + (timeFilter === '' ? 0 : 1) + (dayFilter === '' ? 0 : 1) + (profFilter === '' ? 0 : 1) + (creditFilter === '' ? 0 : 1)
-            await axios.post('http://localhost:8080/api/ccSearchResults', {
+            await axios.post('http://localhost:8080/api/SearchResults', {
                 content: filterVal,
                 numFilters: usefulFilters.toString()
             })
