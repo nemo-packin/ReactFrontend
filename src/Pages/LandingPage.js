@@ -29,9 +29,9 @@ const LandingPage = () => {
   return (
     <div className='content-center'>
       <div className = "page-title">
-          <h1>Landing Page</h1>
+          <h1>Login Page</h1>
       </div>
-      <p>{greeting}</p>
+      {/* <p>{greeting}</p> */}
       <button className='bg-red-600 m-2 w-100 rounded-none' onClick={() => {
         setLogoutMsg(false)
         setLogin(!login)

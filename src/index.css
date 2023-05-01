@@ -19,3 +19,15 @@ code {
 .page-title {
   margin-left: 10px;
 }
+
+h2 {
+  font-size: 30px;
+  font-style: bold;
+  font-weight: 500;
+}
+
+h1 {
+  font-size: 30px;
+  font-style: bold;
+  font-weight: 500;
+}

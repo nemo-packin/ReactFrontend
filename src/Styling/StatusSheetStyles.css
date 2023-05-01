@@ -1,9 +1,9 @@
 .outer {
     display: flex;
     flex-direction: column;
-    width: 47%;
+    width: 50%;
     margin: 10px;
-    margin-left: 30px;
+    margin-left: 80px;
     height: 500px;
     float: left;
     background-color: #fff; 

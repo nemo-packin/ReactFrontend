@@ -10,6 +10,7 @@ const styles = {
     display: "flex",
     width: "50%",
     margin: "10px",
+    marginRight: "30px",
     float: "right"
   },
   left: {

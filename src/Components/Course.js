@@ -28,7 +28,7 @@ const Course = (props) => {
       })
   }
   return (
-    <div className="">
+    <div className="box1">
       <div className="box2">
         <h2>{courseCode}</h2>
         <p>Instructor: {prof}</p>
