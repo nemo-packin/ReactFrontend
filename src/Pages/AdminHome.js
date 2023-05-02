@@ -4,6 +4,7 @@ import AccountInfo from '../Components/AccountInfo'
 import {react, useState } from 'react'
 import Search from '../Components/Search/Search'
 import Course from '../Components/Course'
+import NavBar from '../Components/NavBar'
 
 const AdminHome = () => {
     const [showComponent, setShowComponent] = useState(false);
@@ -24,6 +25,7 @@ const AdminHome = () => {
 
     return(
         <div>
+            <NavBar userType='admin'/>
             <div className = "page-title">
                 <h2>Administrator Home</h2>
             </div>
