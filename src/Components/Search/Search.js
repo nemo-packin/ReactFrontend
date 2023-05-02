@@ -18,10 +18,6 @@ const Search = (courseClicked) => {
     const [creditFilter, setCreditFilter] = useState('')
 
     useEffect(() => {
-        console.log(displayResults)
-    }, [displayResults])
-
-    useEffect(() => {
         // console.log(`course Search: ${courseSearch}`)
         // console.log(`Department Filter: ${departmentFilter}`)
         // console.log(`Time Filter: ${timeFilter}`)

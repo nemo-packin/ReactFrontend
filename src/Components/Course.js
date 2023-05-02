@@ -6,7 +6,7 @@ const Course = (props) => {
   const { courseCode, prof, day, time, setListOfRecCourses } = props
   const [ successfullyAdded, setSuccessfullyAdded ] = useState(false)
   const [ failureToAdd, setFailureToAdd] = useState(false)
-
+  
   useEffect(() => {
     setSuccessfullyAdded(false)
     setFailureToAdd(false)
