@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "../Styling/SearchStyles.css";
 import Course from '../Components/Course'
 import Search from "../Components/Search/Search";
+import NavBar from "../Components/NavBar";
 
 const SchedulerPage = () => {
     const [showComponent, setShowComponent] = useState(false);
@@ -46,22 +47,26 @@ const SchedulerPage = () => {
     }
 
     return (
-        <div className = "search-box">
-            <div className="page-title">
-                <h2>Search</h2>
-            </div>
-            {console.log(`show: ${showSuggested}`)}
-            <div>Suggested Courses:</div>
-            {displaySuggested ? (
-                <ol>
-                    {listOfSuggested}
-                </ol>
-            ) : <></>}
+        <>
+            <NavBar userType='student'/>
+            <div className="search-box">
+                <div className="page-title">
+                    <h2>Search</h2>
+                </div>
+                {console.log(`show: ${showSuggested}`)}
+                <div>Suggested Courses:</div>
+                {displaySuggested ? (
+                    <ol>
+                        {listOfSuggested}
+                    </ol>
+                ) : <></>}
 
-            <Search courseClicked={courseClicked} />
-            {/* <button onClick={() => setShowComponent(!showComponent)}>Show Component</button> */}
-            {showComponent && <Course courseCode={cc} prof={prof} day={day} time={time} setListOfRecCourses={setListOfRecCourses} />}
-        </div>
+                <Search courseClicked={courseClicked} />
+                {/* <button onClick={() => setShowComponent(!showComponent)}>Show Component</button> */}
+                {showComponent && <Course courseCode={cc} prof={prof} day={day} time={time} setListOfRecCourses={setListOfRecCourses} />}
+            </div>
+        </>
+
     )
 }
 

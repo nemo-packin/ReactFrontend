@@ -12,14 +12,13 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        <NavBar />
         <Routes>
           <Route path='/' element={<LandingPage />}></Route>
 
           {/* Protected routes */}
           <Route element={<RequireAuth userType='student'></RequireAuth>}>
             <Route path='/StudentHome' element={<StudentHome />}></Route>
-            <Route path='/SchedulerPage' element={<SchedulerPage />}></Route>
+            <Route path='/CourseSearch' element={<SchedulerPage />}></Route>
           </Route>
           <Route element={<RequireAuth userType='admin'></RequireAuth>}>
             <Route path='/AdminHome' element={<AdminHome />}></Route>

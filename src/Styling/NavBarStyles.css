@@ -1,4 +1,4 @@
-nav {
+/* nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -19,7 +19,7 @@ nav div {
   margin-left: 20px;
 }
 
-nav div a {
+nav button {
   text-decoration: none;
   color: #fff;
   font-size: 1.2rem;
@@ -29,7 +29,7 @@ nav div a {
   transition: all 0.2s ease-in-out;
 }
 
-nav div a:hover {
+nav button:hover {
   background-color: #a31515ef;
 }
 
@@ -39,4 +39,4 @@ body::-webkit-scrollbar {
 
 body {
   overflow: auto;
-}
+} */

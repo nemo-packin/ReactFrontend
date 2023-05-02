@@ -3,6 +3,7 @@ import "../Styling/HomeStyles.css";
 import Calendar from '../Components/Calendar';
 import AccountInfo from '../Components/AccountInfo';
 import StatusSheet from '../Components/StatusSheet';
+import NavBar from '../Components/NavBar';
 
 const StudentHome = () => {
   const [showCalendar, setShowCalendar] = useState(true);
@@ -20,6 +21,7 @@ const StudentHome = () => {
 
   return (
     <div>
+      <NavBar userType='student'/>
       <div className="page-title">
         <h2>Student Home</h2>
       </div>
