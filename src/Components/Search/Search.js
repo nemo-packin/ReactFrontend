@@ -22,12 +22,12 @@ const Search = (courseClicked) => {
     }, [displayResults])
 
     useEffect(() => {
-        console.log(`course Search: ${courseSearch}`)
-        console.log(`Department Filter: ${departmentFilter}`)
-        console.log(`Time Filter: ${timeFilter}`)
-        console.log(`Day Filter: ${dayFilter}`)
-        console.log(`Prof Filter: ${profFilter}`)
-        console.log(`Credit Filter: ${creditFilter}`)
+        // console.log(`course Search: ${courseSearch}`)
+        // console.log(`Department Filter: ${departmentFilter}`)
+        // console.log(`Time Filter: ${timeFilter}`)
+        // console.log(`Day Filter: ${dayFilter}`)
+        // console.log(`Prof Filter: ${profFilter}`)
+        // console.log(`Credit Filter: ${creditFilter}`)
         getSearchResult()
     }, [courseSearch, departmentFilter, timeFilter, dayFilter, profFilter, creditFilter])
 
@@ -35,7 +35,6 @@ const Search = (courseClicked) => {
     async function getSearchResult() {
         // const filterVal = `course code_${courseSearch};department_${departmentFilter};time_${timeFilter};day_${dayFilter};prof_${profFilter};credit hours_${creditFilter}`
         const filterVal = `course code_${courseSearch};time_${timeFilter};day_${dayFilter};prof_${profFilter};credit hours_${creditFilter}`
-        console.log(`Filters: ${filterVal}`)
         // let usefulFilters = (courseSearch === '' ? 0 : 1) + (departmentFilter === '' ? 0 : 1) + (timeFilter === '' ? 0 : 1) + (dayFilter === '' ? 0 : 1) + (profFilter === '' ? 0 : 1) + (creditFilter === '' ? 0 : 1)
         let usefulFilters = (courseSearch === '' ? 0 : 1) + (timeFilter === '' ? 0 : 1) + (dayFilter === '' ? 0 : 1) + (profFilter === '' ? 0 : 1) + (creditFilter === '' ? 0 : 1)
         await axios.post('http://localhost:8080/api/SearchResults', {
