@@ -5,6 +5,7 @@ import {react, useState } from 'react'
 import Search from '../Components/Search/Search'
 import Course from '../Components/Course'
 import NavBar from '../Components/NavBar'
+import StudentSearch from '../Components/Search/StudentSearch'
 
 const AdminHome = () => {
     const [showComponent, setShowComponent] = useState(false);
@@ -13,6 +14,7 @@ const AdminHome = () => {
     const [day, setDay] = useState('')
     const [time, setTime] = useState('')
     const [listOfRecCourses, setListOfRecCourses] = useState([])
+    const [stuSearch, setStuSearch] = useState(true)
 
 
     function courseClicked(courseCode, prof, day, time) {
@@ -29,7 +31,12 @@ const AdminHome = () => {
             <div className = "page-title">
                 <h2>Administrator Home</h2>
             </div>
-            <Search courseClicked={courseClicked} />
+            <label>Student Search:</label>
+            <input type='radio' name='searchType' onChange={() => setStuSearch(true)}/>
+            <label>CourseSearch:</label>
+            <input type='radio' name='searchType' onChange={() => setStuSearch(false)}/>
+            {stuSearch ? <StudentSearch/> : <Search courseClicked={courseClicked} /> }
+            
             <div>
                 {showComponent && <Course courseCode={cc} prof={prof} day={day} time={time} setListOfRecCourses={setListOfRecCourses} />}
             </div>

@@ -23,6 +23,8 @@ const Login = () => {
           navigate('/StudentHome')
         } else if (response.data === 'admin') {
           navigate('/AdminHome')
+        } else if (response.data === 'already logged in!'){
+          setErrMsg("Already logged in!")
         } else { setErrMsg("INVALID LOGIN") }
       })
       .catch(error => {
