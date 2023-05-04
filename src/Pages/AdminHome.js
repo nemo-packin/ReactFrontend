@@ -6,6 +6,7 @@ import Course from '../Components/Course'
 import NavBar from '../Components/NavBar'
 import StudentSearch from '../Components/Search/StudentSearch'
 import axios from 'axios'
+import CalendarHolder from '../Components/CalendarHolder'
 
 const AdminHome = () => {
     const [showComponent, setShowComponent] = useState(false);
@@ -74,6 +75,8 @@ const AdminHome = () => {
                 {showComponent && <Course courseCode={cc} prof={prof} day={day} time={time} setListOfRecCourses={setListOfRecCourses} />}
             </div>
             {showCal && <Calendar username={stu2} purpose="PseudoStu" />}
+            {/* {showCal && <CalendarHolder  username={stu2}/> }  */}
+            {/* <Calendar username={stu2} purpose="PseudoStu" /> */}
         </div>
     )
 }

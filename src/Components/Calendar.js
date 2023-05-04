@@ -104,7 +104,8 @@ class Calendar extends Component {
                 const dp = this.calendar;
                 const e = args.e;
                 dp.events.remove(e);
-                refreshPage()
+                // refreshPage()
+                this.updateCal();
               }
             }).catch(error => {
               console.log(error)
@@ -137,19 +138,13 @@ class Calendar extends Component {
 
   componentDidUpdate(prevProps, prevState) {
     if (prevProps.username !== this.props.username) {
-      console.log('THERE WAS A CHANGE')
       this.updateCal()
-      // this.setState({
-      //   reloadPage: this.reloadPage + 1
-      // })
     }
   }
 
   updateCal = async () => {
-    console.log("Yippeee!")
     await axios.get(`http://localhost:8080/api/calendar${this.props.purpose}`)
       .then(codesAndTimes => {
-        console.log('CALENDAR')
         console.log(codesAndTimes.data.length === 0)
         if (codesAndTimes.data.length === 0) {
           this.setState({
