@@ -33,7 +33,7 @@ class Calendar extends Component {
     super(props);
     this.calendarRef = React.createRef();
     this.state = {
-      reloadPage: false,
+      reloadPage: 0,
       makeNewSchedule: false,
       eventsSize: 0,
       reload: 0,
@@ -135,10 +135,21 @@ class Calendar extends Component {
     return this.calendarRef.current.control;
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.username !== this.props.username) {
+      console.log('THERE WAS A CHANGE')
+      this.updateCal()
+      // this.setState({
+      //   reloadPage: this.reloadPage + 1
+      // })
+    }
+  }
 
-  componentDidMount() {
-    axios.get('http://localhost:8080/api/calendar')
+  updateCal = async () => {
+    console.log("Yippeee!")
+    await axios.get(`http://localhost:8080/api/calendar${this.props.purpose}`)
       .then(codesAndTimes => {
+        console.log('CALENDAR')
         console.log(codesAndTimes.data.length === 0)
         if (codesAndTimes.data.length === 0) {
           this.setState({
@@ -238,15 +249,24 @@ class Calendar extends Component {
           const startDate = "2023-04-30";
           this.calendar.update({ startDate, events });
         }
+        this.setState({
+          reloadPage: this.reloadPage + 1
+        })
+        // this.forceUpdate()
       })
       .catch(error => {
         console.log(error)
       })
   }
 
+  componentDidMount() {
+    this.updateCal()
+  }
+
   render() {
     return (
       <div style={styles.wrap}>
+        <div><h1>{this.props.username}</h1></div>
         <div style={styles.main}>
           {this.state.makeNewSchedule ? <NewSchedule makeNewSchedule={this.state.makeNewSchedule} cal={this} /> : (
             <DayPilotCalendar

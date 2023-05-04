@@ -1,7 +1,7 @@
 import { React, useState, useEffect } from 'react'
 import axios from 'axios'
 
-const StudentSearch = () => {
+const StudentSearch = (props) => {
     const [student, setStudent] = useState('')
     const [displayResults, setDisplayResults] = useState()
 
@@ -14,13 +14,14 @@ const StudentSearch = () => {
             await axios.post("http://localhost:8080/api/SearchStudents", {
             usernameSearch: student
         }).then((result) => {
+            console.log(result)
             setDisplayResults(result.data.map((d) => {
-                return <li key={d.username}>{d.username}</li>
+                return <li key={d.username} onClick={() => {props.setStuUsername(d.username)}}>{d.username}</li>
             }))
         }).catch((error) => {
             console.log(error)
         })
-        }
+        }else {setDisplayResults()}
         
     }
 

@@ -35,7 +35,7 @@ const Search = (courseClicked) => {
         let usefulFilters = (courseSearch === '' ? 0 : 1) + (timeFilter === '' ? 0 : 1) + (dayFilter === '' ? 0 : 1) + (profFilter === '' ? 0 : 1) + (creditFilter === '' ? 0 : 1)
         await axios.post('http://localhost:8080/api/SearchResults', {
             content: filterVal,
-            numFilters: usefulFilters.toString()
+            numFilters: usefulFilters.toString() 
         })
             .then(searchResults => {
                 const courseMap = new Map();
