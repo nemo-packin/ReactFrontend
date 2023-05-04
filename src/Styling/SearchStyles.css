@@ -7,6 +7,9 @@
   
    input:hover {
     border: 1px solid black;
+    margin-bottom: 16px;
+    margin: 5px;
+    padding: 5px;
   }
 
   .search-box {
