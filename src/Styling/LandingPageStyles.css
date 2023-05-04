@@ -20,12 +20,15 @@
   .content-center input {
     border: 1px solid black;
     margin-bottom: 16px;
-    margin: 20px;
-    padding: 10px;
+    margin: 5px;
+    padding: 5px;
   }
   
   .content-center input:hover {
     border: 1px solid black;
+    margin-bottom: 16px;
+    margin: 5px;
+    padding: 5px;
   }
 
   .content-center {

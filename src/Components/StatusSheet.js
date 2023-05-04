@@ -1,28 +1,64 @@
 import React, { useState, useEffect } from 'react';
-import "../Styling/StatusSheetStyles.css";
-import axios from "axios";
+import '../Styling/StatusSheetStyles.css';
+import axios from 'axios';
 
 const StatusSheet = (props) => {
-  const {  } = props
-  const { successfullyAdded, setSuccessfullyAdded } = useState(false)
 
-  const addCourse = async () => {
-    await axios.post('http://localhost:8080/api/statusSheet', {
-      
-    }).catch(error => {
-    console.log(error)
+  const [courses, setCourses] = useState('');
+  const [statusSheet, setStatusSheet] = useState([]);
+
+  useEffect(() => {
+    async function fetchData() {
+      const result = await axios.get('http://localhost:8080/api/statusSheet');
+      setStatusSheet(result.data);
+    }
+    fetchData();
+  }, [statusSheet]);
+
+  function addCourse(inputValue) {
+    axios.post('http://localhost:8080/api/statusSheet', {
+      code: inputValue
     })
-  }
+      .then(result => {
+        console.log(result)
+        if (result.data !== true) {
+          console.log("FAIL OR IN STATUS SHEET")
+        } else {
+          console.log("ADDED TO STATUS SHEET AND FETCHING DATA")
+          setCourses(''); // clear the input box
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+  
+
+  const handleInputChange = (event) => {
+    setCourses(event.target.value);
+  };
+
   return (
-    <div className="outer">
-  <h2>Status Sheet</h2>
-  <div className="inner">
-    <p>Beep Boop</p>
-  </div>
-</div>
-
+    <div className='outer'>
+      <h2>Status Sheet</h2>
+      <div className='inner'>
+        <input
+          className='text-black border-solid border-2 border-grey-light'
+          type='search'
+          placeholder='Course Code...'
+          value={courses}
+          onChange={handleInputChange}
+        />
+        <button onClick={() => addCourse(courses)}>Add Course</button>
+      </div>
+      <h3>Previous Courses</h3>
+      <ul>
+        {statusSheet.map((course, index) => (
+          <li key={index}>{course}</li>
+        ))}
+      </ul>
+    </div>
   );
-
-}
+};
 
 export default StatusSheet;

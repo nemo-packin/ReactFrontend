@@ -8,7 +8,8 @@ class AccountInfo extends Component {
     super()
     this.state = {
       name: "",
-      username: ""
+      username: "",
+      approval: ""
     }
   }
 
@@ -17,7 +18,8 @@ class AccountInfo extends Component {
         .then(accountI => {
           this.setState({
             name: accountI.data[0],
-            username: accountI.data[1]
+            username: accountI.data[1],
+            approval: accountI.data[2]
           })
         })
         .catch(error => {
@@ -26,17 +28,18 @@ class AccountInfo extends Component {
   }
 
   render() {
-    const{name, username} = this.state
+    const { name, username, approval } = this.state;
     return (
-        <div className = "account">
-          <h2>Account Information</h2>
-          <div className = "fields"></div>
-            <p>Name: {name}</p>
-            <p>Username: {username}</p>
-          <div/>
+      <div className="account">
+        <h2>Account Information</h2>
+        <div className="fields">
+          <p>Name: {name}</p>
+          <p>Username: {username}</p>
+          {approval !== 'none' && <p>Schedule Status: {approval}</p>}
         </div>
-      );
-  }
+      </div>
+    );
+  }  
 }
 
 export default AccountInfo;
