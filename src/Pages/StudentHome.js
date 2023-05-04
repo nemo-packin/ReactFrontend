@@ -30,7 +30,7 @@ const StudentHome = () => {
         <button onClick={handleStatusSheetClick}>Status Sheet</button>
       </div>
       <AccountInfo/>
-      {showCalendar && <Calendar/>}
+      {showCalendar && <Calendar purpose="Stu"/>}
       {showStatusSheet && <StatusSheet/>}
     </div>
   );
