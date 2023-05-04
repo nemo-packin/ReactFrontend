@@ -20,6 +20,9 @@ const Register = () => {
     const [year, setYear] = useState(0)
     const [major, setMajor] = useState('Undeclared')
     const [minor, setMinor] = useState('Undeclared')
+    const majorOptions = ['Undeclared', 'Applied Science & Engineering', 'Biblical and Religious Studies', 'Philosophy', 'Biology', 'Economics', 'Entrepreneurship', 'Management', 'Marketing', 'Chemistry', 'Communication & Visual Arts', 'Computer Science', 'Data Science', 'Education', 'Electrical Engineering', 'Computer Engineering', 'English', 'Theater', 'Exercise Science', 'History', 'Mechanical Engineering', 'Modern Languages', 'Music', 'Nursing', 'Physics', 'Political Science', 'Psychology', 'Social Work', 'Sociology', 'Writing'];
+    const minorOptions = ['None', 'Applied Science & Engineering', 'Biblical and Religious Studies', 'Philosophy', 'Biology', 'Economics', 'Entrepreneurship', 'Management', 'Marketing', 'Chemistry', 'Communication & Visual Arts', 'Computer Science', 'Data Science', 'Education', 'Electrical Engineering', 'Computer Engineering', 'English', 'Theater', 'Exercise Science', 'History', 'Mechanical Engineering', 'Modern Languages', 'Music', 'Nursing', 'Physics', 'Political Science', 'Psychology', 'Social Work', 'Sociology', 'Writing'];
+
 
     // variables for username input field 
     const [user, setUser] = useState('');
@@ -151,29 +154,24 @@ const Register = () => {
                         </div>
 
                         <div>
-                            <label htmlFor='major'>
-                                Major:
-                            </label>
-                            <input
-                                className='text-black border-solid border-2 border-grey-light'
-                                type='text'
-                                id='major'
-                                autoComplete='off'
-                                onChange={(e) => setMajor(e.target.value)}
-                            />
+                            <label htmlFor="major">Major: </label>
+                            <select id="major" value={major} onChange={(e) => setMajor(e.target.value)}>
+                            {majorOptions.map((option) => (
+                                <option key={option}>
+                                {option}
+                                </option>
+                            ))}
+                            </select>
                         </div>
-
                         <div>
-                            <label htmlFor='minor'>
-                                Minor:
-                            </label>
-                            <input
-                                className='text-black border-solid border-2 border-grey-light'
-                                type='text'
-                                id='minor'
-                                autoComplete='off'
-                                onChange={(e) => setMinor(e.target.value)}
-                            />
+                            <label htmlFor="minor">Minor: </label>
+                            <select id="minor" value={minor}  onChange={(e) => setMinor(e.target.value)}>
+                            {minorOptions.map((option) => (
+                                <option key={option}>
+                                {option}
+                                </option>
+                            ))}
+                            </select>
                         </div>
 
                         {/* Username */}
