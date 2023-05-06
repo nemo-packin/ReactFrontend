@@ -35,3 +35,42 @@ margin: 4px 0;
     border: 2px solid #000000;
 }
   
+.statusSheet {
+    column-count: 2; /* Set the number of columns */
+    column-gap: 20px; /* Adjust the gap between columns */
+  }
+
+input[type="checkbox"] ~ .section {
+    display: none;
+}
+
+input[type="checkbox"]:checked ~ .section {
+    display: block;
+}
+
+
+input[type="checkbox"] {
+    opacity: 0;
+    width: 0px;
+}
+
+input[type="checkbox"] + label::before{
+    content: "";
+    display: inline-block;
+    height: .6em;
+    width: .6em;
+    border-left: 1px solid;
+    border-bottom: 1px solid;
+    transform: rotate(-135deg);
+    position: relative;
+    right: .6em;    
+}
+
+input[type="checkbox"]:checked + label::before{
+    transform: rotate(-45deg);
+}
+
+.section {
+    max-height: 5em;
+    overflow-y: scroll;
+}

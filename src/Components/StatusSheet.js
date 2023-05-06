@@ -5,15 +5,18 @@ import axios from 'axios';
 const StatusSheet = (props) => {
 
   const [courses, setCourses] = useState('');
-  const [statusSheet, setStatusSheet] = useState([]);
+  const [prevCourses, setPrevCourses] = useState([]);
+  const [reqs, setReqs] = useState([]);
 
   useEffect(() => {
     async function fetchData() {
       const result = await axios.get('http://localhost:8080/api/statusSheet');
-      setStatusSheet(result.data);
+      console.log(result.data.reqs);
+      setPrevCourses(result.data.courses);
+      setReqs(result.data.reqs);
     }
     fetchData();
-  }, [statusSheet]);
+  }, [prevCourses]);
 
   function addCourse(inputValue) {
     axios.post('http://localhost:8080/api/statusSheet', {
@@ -53,10 +56,40 @@ const StatusSheet = (props) => {
       </div>
       <h3>Previous Courses</h3>
       <ul>
-        {statusSheet.map((course, index) => (
+        {prevCourses.map((course, index) => (
           <li key={index}>{course}</li>
         ))}
       </ul>
+      <h3> Requirements </h3>
+      <div className='statusSheet'>
+        <ul>
+          {
+            reqs.filter(x => x != null).map(({title, options, creditHours}) => (
+              <li className="deg-name"><strong>{title}</strong>: {creditHours}
+              <ul>
+                  {
+                    options.map(({title, options, creditHours}) => (
+                      <li class="sec-name">
+                      <input type="checkbox" id={"chck-" + title} name={"chck-" + title}/>
+                      <label for={"chck-" + title}><em>{title}</em>: {creditHours}</label>
+                      <div className='section'>
+                        <ul>
+                          {
+                            options.map(({code, creditHours}) => (
+                              <li>{code}: {creditHours}</li>
+                            ))
+                          }
+                        </ul>
+                      </div>
+                      </li>
+                    ))
+                  }
+                </ul>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
     </div>
   );
 };
