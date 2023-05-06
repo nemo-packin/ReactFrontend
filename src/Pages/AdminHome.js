@@ -5,11 +5,12 @@ import Search from '../Components/Search/Search'
 import NavBar from '../Components/NavBar'
 import StudentSearch from '../Components/Search/StudentSearch'
 import axios from 'axios'
+import AccountInfo from '../Components/AccountInfo'
 
 const AdminHome = () => {
     const [listOfRecCourses, setListOfRecCourses] = useState([])
     const [stuSearch, setStuSearch] = useState(true)
-    const [showCal, setShowCal] = useState(false)
+    const [showStuStuff, setShowStuStuff] = useState(false)
     const [stuUsername, setStuUsername] = useState('')
     const [stu2, setStu2] = useState('')
     const [reloadPage, setReloadPage] = useState(0)
@@ -17,7 +18,7 @@ const AdminHome = () => {
     //faheirufaher
     const [showConfirm, setShowConfirm] = useState(false)
     const [showError, setShowError] = useState(false)
-    
+
 
     useEffect(() => {
         createPsuedoStu()
@@ -58,7 +59,7 @@ const AdminHome = () => {
         axios.get('http://localhost:8080/api/pseudoStatus')
             .then((response) => {
                 setStu2(stuUsername)
-                setShowCal(response.data)
+                setShowStuStuff(response.data)
             }).catch((error) => {
                 console.log(error)
             })
@@ -80,7 +81,7 @@ const AdminHome = () => {
                         Failed to add to Schedule!
                     </div>
                 )}
-            </div> 
+            </div>
 
             <div className="page-title">
                 <h2>Administrator Home</h2>
@@ -89,10 +90,12 @@ const AdminHome = () => {
             <input type='radio' name='searchType' onChange={() => setStuSearch(true)} />
             <label>CourseSearch:</label>
             <input type='radio' name='searchType' onChange={() => setStuSearch(false)} />
-            {stuSearch ? <StudentSearch setStuUsername={setStuUsername} /> : <Search setShowConfirm={makeConfirmAppear} setShowError={makeErrorAppear} purpose="PseudoStu"/>}
+            {stuSearch ? <StudentSearch setStuUsername={setStuUsername} /> : <Search setShowConfirm={makeConfirmAppear} setShowError={makeErrorAppear} purpose="PseudoStu" />}
 
-            {showCal && <Calendar reloadPage={reloadPage} username={stu2} purpose="PseudoStu"/>}
-            {/* <Calendar username={stu2} purpose="PseudoStu" /> */}
+            {showStuStuff && <>
+                <AccountInfo purpose='PseudoStu' username={stu2}/>
+                <Calendar reloadPage={reloadPage} username={stu2} purpose="PseudoStu" />
+            </>}
         </div>
     )
 }
