@@ -15,16 +15,14 @@ class AccountInfo extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    console.log(`prevState major: ${prevState.major}`)
-    console.log(`major: ${this.state.major}`)
-    if ((prevState.major !== this.state.major) || (prevState.minor !== this.state.minor)) {
+    if ((prevState.major !== this.state.major) || (prevState.minor !== this.state.minor) || 
+          prevProps.username !== this.props.username) {
       this.updateAccountInfo()
     }
   }
 
   updateAccountInfo = () => {
-    axios
-      .get("http://localhost:8080/api/accountInfo")
+    axios.get(`http://localhost:8080/api/accountInfo${this.props.purpose}`)
       .then((accountI) => {
         this.setState({
           name: accountI.data[0],
@@ -33,8 +31,11 @@ class AccountInfo extends Component {
           major: accountI.data[3],
           minor: accountI.data[4]
         });
+        console.log(accountI.data[2])
       })
       .catch((error) => {
+        setTimeout(() => {
+      }, 1000);
         console.log(error);
       });
   }
@@ -47,6 +48,7 @@ class AccountInfo extends Component {
     e.preventDefault();
     console.log(e.target[0].value)
     axios.post('http://localhost:8080/api/changeName', {
+      type: this.props.purpose,
       name: e.target.value
     })
     .then(result => {
@@ -87,14 +89,30 @@ class AccountInfo extends Component {
             </select>
           </div>
           {approval !== "none" && <p>Schedule Status: {approval}</p>}
+          {this.props.purpose === 'PseudoStu' && 
+            <button onClick={() => this.approveSchedule()}>Approve Schedule</button>
+          }
         </div>
       </div>
     );
+  }
+  approveSchedule = () => {
+    axios.get('http://localhost:8080/api/approveStudent')
+      .then((result) => {
+        console.log(`data: ${result.data}`)
+        if(result.data === true){
+          this.updateAccountInfo()
+        }
+        console.log('Unauthorized atempt to approve student schedule')
+      }).catch((error) => {
+        console.log(error)
+      })
   }
   
   handleMajorChange = (m) => {
     // console.log(event.target.value)
     axios.post('http://localhost:8080/api/changeMajor', {
+      type: this.props.purpose,
       major: m
     })
     .then(result => {
@@ -106,6 +124,7 @@ class AccountInfo extends Component {
   handleMinorChange = (m) => {
     // console.log(event.target.value)
     axios.post('http://localhost:8080/api/changeMinor', {
+      type: this.props.purpose,
       minor: m
     })
     .then(result => {
