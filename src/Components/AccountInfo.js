@@ -31,6 +31,7 @@ class AccountInfo extends Component {
           major: accountI.data[3],
           minor: accountI.data[4]
         });
+        console.log(accountI.data[2])
       })
       .catch((error) => {
         setTimeout(() => {
@@ -88,9 +89,24 @@ class AccountInfo extends Component {
             </select>
           </div>
           {approval !== "none" && <p>Schedule Status: {approval}</p>}
+          {this.props.purpose === 'PseudoStu' && 
+            <button onClick={() => this.approveSchedule()}>Approve Schedule</button>
+          }
         </div>
       </div>
     );
+  }
+  approveSchedule = () => {
+    axios.get('http://localhost:8080/api/approveStudent')
+      .then((result) => {
+        console.log(`data: ${result.data}`)
+        if(result.data === true){
+          this.updateAccountInfo()
+        }
+        console.log('Unauthorized atempt to approve student schedule')
+      }).catch((error) => {
+        console.log(error)
+      })
   }
   
   handleMajorChange = (m) => {
