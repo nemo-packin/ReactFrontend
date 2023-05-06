@@ -137,7 +137,8 @@ class Calendar extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if (prevProps.username !== this.props.username) {
+    if (prevProps.username !== this.props.username || prevProps.reloadPage !== this.props.reloadPage || 
+        prevState.makeNewSchedule !== this.state.makeNewSchedule) {
       this.updateCal()
     }
   }
@@ -153,6 +154,7 @@ class Calendar extends Component {
         } else {
           // this.forceUpdate()
           this.setState({
+            makeNewSchedule: false,
             courseCodes: codesAndTimes.data[0],
             courseDays: codesAndTimes.data[1],
             courseTimes: codesAndTimes.data[2],
