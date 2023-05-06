@@ -23,9 +23,10 @@ class AccountInfo extends Component {
   }
 
   updateAccountInfo = () => {
-    axios
-      .get("http://localhost:8080/api/accountInfo")
+    axios.get("http://localhost:8080/api/accountInfo")
       .then((accountI) => {
+        console.log("made it here!")
+        console.log(accountI)
         this.setState({
           name: accountI.data[0],
           username: accountI.data[1],
@@ -35,6 +36,8 @@ class AccountInfo extends Component {
         });
       })
       .catch((error) => {
+        setTimeout(() => {
+      }, 1000);
         console.log(error);
       });
   }

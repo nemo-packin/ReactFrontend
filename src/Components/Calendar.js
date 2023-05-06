@@ -265,7 +265,7 @@ class Calendar extends Component {
       <div style={styles.wrap}>
         <div><h1>{this.props.username}</h1></div>
         <div style={styles.main}>
-          {this.state.makeNewSchedule ? <NewSchedule makeNewSchedule={this.state.makeNewSchedule} cal={this} /> : (
+          {this.state.makeNewSchedule ? <NewSchedule makeNewSchedule={this.state.makeNewSchedule} purpose={this.props.purpose} cal={this} /> : (
             <DayPilotCalendar
               {...this.state}
               ref={this.calendarRef}

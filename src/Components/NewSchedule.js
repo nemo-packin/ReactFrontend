@@ -8,15 +8,18 @@ const NewSchedule = (props) => {
 
     async function newSchedule() {
         if (name !== '' && semester !== '') {
-            axios.post('http://localhost:8080/api/newCalendar', {
+            axios.post(`http://localhost:8080/api/newCalendar${props.purpose}`, {
                 nameForSchedule: name,
                 semester: semester
-            }).then(() => {
-                props.cal.setState({
-                    makeNewSchedule: false
-                })
+            }).then((result) => {
+                if (result.data === true) {
+                    props.cal.setState({
+                        makeNewSchedule: false
+                    })
+                }
+
             })
-        }else{console.log("YOU NEED A NAME & SEMESTER")}
+        } else { console.log("YOU NEED A NAME & SEMESTER") }
     }
 
     return (
@@ -29,7 +32,7 @@ const NewSchedule = (props) => {
             <input type='text' className='text-black border-solid border-2 border-grey-light' id='semesterForSchedule' onChange={(e) => {
                 setSemester(e.target.value)
             }} />
-            <button className='bg-green-600 m-2 w-100 rounded-none' onClick={() => {newSchedule()}}>Make New Schedule</button>
+            <button className='bg-green-600 m-2 w-100 rounded-none' onClick={() => { newSchedule() }}>Make New Schedule</button>
         </div>
     )
 }
