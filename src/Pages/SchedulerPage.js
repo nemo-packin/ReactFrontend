@@ -1,69 +1,49 @@
 import React, { useState, useEffect } from "react";
 import "../Styling/SearchStyles.css";
-import Course from '../Components/Course'
 import Search from "../Components/Search/Search";
 import NavBar from "../Components/NavBar";
 
 const SchedulerPage = () => {
-    const [showComponent, setShowComponent] = useState(false);
-    const [cc, setCC] = useState('')
-    const [prof, setProf] = useState('')
-    const [day, setDay] = useState('')
-    const [time, setTime] = useState('')
-    const [listOfRecCourses, setListOfRecCourses] = useState([])
-    const [listOfSuggested, setListOfSuggested] = useState([])
-    const [showSuggested, setShowSuggested] = useState(false)
+    const [showConfirm, setShowConfirm] = useState(false)
+    const [showError, setShowError] = useState(false)
 
-    useEffect(() => {
-        setShowSuggested(true)
-        displaySuggested()
-    }, [listOfRecCourses])
-
-    useEffect(() => {
-        setShowSuggested(false)
-    }, [])
-
-    function courseClicked(courseCode, prof, day, time) {
-        setShowComponent(true)
-        setCC(courseCode)
-        setProf(prof)
-        setDay(day)
-        setTime(time)
+    const makeConfirmAppear = () => {
+        setShowConfirm(true);
+        setTimeout(() => {
+            setShowConfirm(false);
+        }, 3000); // Hide the alert after 3 seconds
     }
 
-    function displaySuggested() {
-        const courseMap = new Map();
-        listOfRecCourses.forEach((course, index) => {
-            courseMap.set(course.courseCode, course)
-        })
-
-        setListOfSuggested(Array.from(courseMap).map(([courseCode, course]) => {
-            if (courseMap.has(courseCode)) {
-                courseMap.delete(courseCode)
-                return <li key={courseCode}
-                    onClick={() => { courseClicked(courseCode, course.prof, course.day, course.time) }}>{courseCode}</li>
-            }
-        }))
+    const makeErrorAppear = () => {
+        setShowError(true);
+        setTimeout(() => {
+            setShowError(false);
+        }, 3000); // Hide the alert after 3 seconds
     }
 
-    return (
+    return ( 
         <>
-            <NavBar userType='student'/>
+            <NavBar userType='student' />
+            <div className="relative">
+                {showConfirm && (
+                    <div className={`absolute top-0 left-0 right-0 bg-green-600 text-white px-4 py-2 font-bold text-center ${showConfirm ? '' : 'hidden'}`} id="alert">
+                        Course Successfully Added!
+                    </div>
+                )}
+            </div>
+            <div className="relative">
+                {showError && (
+                    <div className={`absolute top-0 left-0 right-0 bg-red-600 text-white px-4 py-2 font-bold text-center ${showError ? '' : 'hidden'}`} id="alert">
+                        Failed to add to Schedule!
+                    </div>
+                )}
+            </div> 
+
             <div className="search-box">
                 <div className="page-title">
                     <h2>Search</h2>
                 </div>
-                {console.log(`show: ${showSuggested}`)}
-                <div>Suggested Courses:</div>
-                {displaySuggested ? (
-                    <ol>
-                        {listOfSuggested}
-                    </ol>
-                ) : <></>}
-
-                <Search courseClicked={courseClicked} />
-                {/* <button onClick={() => setShowComponent(!showComponent)}>Show Component</button> */}
-                {showComponent && <Course courseCode={cc} prof={prof} day={day} time={time} setListOfRecCourses={setListOfRecCourses} />}
+                {<Search setShowConfirm={makeConfirmAppear} setShowError={makeErrorAppear} purpose="Stu"/>}
             </div>
         </>
 
