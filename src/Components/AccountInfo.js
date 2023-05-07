@@ -11,6 +11,7 @@ class AccountInfo extends Component {
       approval: "",
       major: "",
       minor: "",
+      allMajors:  []
     };
   }
 
@@ -19,6 +20,13 @@ class AccountInfo extends Component {
           prevProps.username !== this.props.username) {
       this.updateAccountInfo()
     }
+    axios
+      .get("http://localhost:8080/api/majorOptions")
+      .then((result) => {
+        this.setState({
+          allMajors: result.data
+        })
+      })
   }
 
   updateAccountInfo = () => {
@@ -59,7 +67,8 @@ class AccountInfo extends Component {
 
   render() {
     const { name, username, approval, major, minor } = this.state;
-    const majorOptions = ['Undeclared', 'Applied Science & Engineering', 'Biblical and Religious Studies', 'Philosophy', 'Biology', 'Economics', 'Entrepreneurship', 'Management', 'Marketing', 'Chemistry', 'Communication & Visual Arts', 'Computer Science', 'Data Science', 'Education', 'Electrical Engineering', 'Computer Engineering', 'English', 'Theater', 'Exercise Science', 'History', 'Mechanical Engineering', 'Modern Languages', 'Music', 'Nursing', 'Physics', 'Political Science', 'Psychology', 'Social Work', 'Sociology', 'Writing'];
+    const majorOptions = this.state.allMajors;
+    // const majorOptions = ['Undeclared', 'Applied Science & Engineering', 'Biblical and Religious Studies', 'Philosophy', 'Biology', 'Economics', 'Entrepreneurship', 'Management', 'Marketing', 'Chemistry', 'Communication & Visual Arts', 'Computer Science', 'Data Science', 'Education', 'Electrical Engineering', 'Computer Engineering', 'English', 'Theater', 'Exercise Science', 'History', 'Mechanical Engineering', 'Modern Languages', 'Music', 'Nursing', 'Physics', 'Political Science', 'Psychology', 'Social Work', 'Sociology', 'Writing'];
     const minorOptions = ['None', 'Applied Science & Engineering', 'Biblical and Religious Studies', 'Philosophy', 'Biology', 'Economics', 'Entrepreneurship', 'Management', 'Marketing', 'Chemistry', 'Communication & Visual Arts', 'Computer Science', 'Data Science', 'Education', 'Electrical Engineering', 'Computer Engineering', 'English', 'Theater', 'Exercise Science', 'History', 'Mechanical Engineering', 'Modern Languages', 'Music', 'Nursing', 'Physics', 'Political Science', 'Psychology', 'Social Work', 'Sociology', 'Writing'];
   
     return (
