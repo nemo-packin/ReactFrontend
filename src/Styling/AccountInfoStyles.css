@@ -14,15 +14,45 @@
 
 .account h2 {
     border-bottom: 1px solid #ddd;
-    margin-bottom: 16px;
+    margin-bottom: 3px;
 }
 
-.fields {
-    margin: 4px;
-}
+
   
 .fields p {
-margin: 4px 0;
+    margin: 4px 0;
 }  
+  
+.MajorMinor label {
+    font-weight: bold;
+    display: block;
+    margin-right: 5000px;
+  }  
+
+.MajorMinor {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.MajorMinor select {
+    margin-top: 5px;
+    padding: 5px;
+    font-size: 1rem;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    max-width: 100%;
+    word-wrap: break-word;
+  }
+
+.approve {
+    margin-top: 10px;
+}
+  
+  
+  
+  
+  
   
   

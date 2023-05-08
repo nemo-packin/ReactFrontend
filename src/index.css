@@ -20,7 +20,13 @@ code {
   margin-left: 10px;
 }
 
+.flex {
+  align-items: center;
+  margin-bottom: 10px;
+}
+
 h2 {
+  margin-top: 20px;
   font-size: 30px;
   font-style: bold;
   font-weight: 500;

@@ -77,7 +77,7 @@ class AccountInfo extends Component {
         <div className="fields">
           <p>Name: {name}</p>
           <p>Username: {username}</p>
-          <div>
+          <div className='MajorMinor'>
             <label htmlFor="major">Major: </label>
             <select id="major" value={major} onChange={(e) => {this.handleMajorChange(e.target.value)}}>
               {majorOptions.map((option) => (
@@ -87,7 +87,7 @@ class AccountInfo extends Component {
               ))}
             </select>
           </div>
-          <div>
+          <div className='MajorMinor'>
             <label htmlFor="minor">Minor: </label>
             <select id="minor" value={minor}  onChange={(e) => {this.handleMinorChange(e.target.value)}}>
               {minorOptions.map((option) => (
@@ -97,10 +97,12 @@ class AccountInfo extends Component {
               ))}
             </select>
           </div>
+          <div className='approve'>
           {approval !== "none" && <p>Schedule Status: {approval}</p>}
           {this.props.purpose === 'PseudoStu' && 
             <button onClick={() => this.approveSchedule()}>Approve Schedule</button>
           }
+          </div>
         </div>
       </div>
     );

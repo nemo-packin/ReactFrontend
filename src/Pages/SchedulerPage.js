@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "../Styling/SearchStyles.css";
 import Search from "../Components/Search/Search";
 import NavBar from "../Components/NavBar";

@@ -24,10 +24,6 @@ const styles = {
   }
 };
 
-function refreshPage() {
-  window.location.reload(false);
-}
-
 class Calendar extends Component {
   constructor(props) {
     super(props);
