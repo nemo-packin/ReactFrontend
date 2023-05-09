@@ -7,6 +7,7 @@ const StatusSheet = (props) => {
   const [courses, setCourses] = useState('');
   const [prevCourses, setPrevCourses] = useState([]);
   const [reqs, setReqs] = useState([]);
+  const [recs, setRecs] = useState([]);
 
   useEffect(() => {
     async function fetchData() {
@@ -14,6 +15,8 @@ const StatusSheet = (props) => {
       console.log(result.data.reqs);
       setPrevCourses(result.data.courses);
       setReqs(result.data.reqs);
+      const result2 = await axios.get('http://localhost:8080/api/recommendations');
+      setRecs(result2.data);
     }
     fetchData();
   }, [prevCourses]);
@@ -54,6 +57,12 @@ const StatusSheet = (props) => {
         />
         <button onClick={() => addCourse(courses)}>Add Course</button>
       </div>
+      <h3>Recommendations</h3>
+      <ul>
+      {recs.slice(0, 5).map((course, index) => (
+          <li key={index}>{course}</li>
+        ))}
+      </ul>
       <h3>Previous Courses</h3>
       <ul>
         {prevCourses.map((course, index) => (
