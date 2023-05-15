@@ -11,7 +11,8 @@ class AccountInfo extends Component {
       approval: "",
       major: "",
       minor: "",
-      allMajors:  []
+      allMajors:  [],
+      allMinors: []
     };
   }
 
@@ -26,7 +27,14 @@ class AccountInfo extends Component {
         this.setState({
           allMajors: result.data
         })
-      })
+      });
+    axios
+      .get("http://localhost:8080/api/minorOptions")
+      .then((result) => {
+        this.setState({
+          allMinors: result.data
+        })
+      });
   }
 
   updateAccountInfo = () => {
@@ -69,7 +77,7 @@ class AccountInfo extends Component {
     const { name, username, approval, major, minor } = this.state;
     const majorOptions = this.state.allMajors;
     // const majorOptions = ['Undeclared', 'Applied Science & Engineering', 'Biblical and Religious Studies', 'Philosophy', 'Biology', 'Economics', 'Entrepreneurship', 'Management', 'Marketing', 'Chemistry', 'Communication & Visual Arts', 'Computer Science', 'Data Science', 'Education', 'Electrical Engineering', 'Computer Engineering', 'English', 'Theater', 'Exercise Science', 'History', 'Mechanical Engineering', 'Modern Languages', 'Music', 'Nursing', 'Physics', 'Political Science', 'Psychology', 'Social Work', 'Sociology', 'Writing'];
-    const minorOptions = ['None', 'Applied Science & Engineering', 'Biblical and Religious Studies', 'Philosophy', 'Biology', 'Economics', 'Entrepreneurship', 'Management', 'Marketing', 'Chemistry', 'Communication & Visual Arts', 'Computer Science', 'Data Science', 'Education', 'Electrical Engineering', 'Computer Engineering', 'English', 'Theater', 'Exercise Science', 'History', 'Mechanical Engineering', 'Modern Languages', 'Music', 'Nursing', 'Physics', 'Political Science', 'Psychology', 'Social Work', 'Sociology', 'Writing'];
+    const minorOptions = this.state.allMinors;
   
     return (
       <div className="account">

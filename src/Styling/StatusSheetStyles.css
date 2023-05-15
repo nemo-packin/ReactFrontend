@@ -40,21 +40,21 @@ margin: 4px 0;
     column-gap: 20px; /* Adjust the gap between columns */
   }
 
-input[type="checkbox"] ~ .section {
+  .statusSheet input[type="checkbox"] ~ .section {
     display: none;
 }
 
-input[type="checkbox"]:checked ~ .section {
+.statusSheet input[type="checkbox"]:checked ~ .section {
     display: block;
 }
 
 
-input[type="checkbox"] {
+.statusSheet input[type="checkbox"] {
     opacity: 0;
     width: 0px;
 }
 
-input[type="checkbox"] + label::before{
+.statusSheet input[type="checkbox"] + label::before{
     content: "";
     display: inline-block;
     height: .6em;
@@ -66,11 +66,11 @@ input[type="checkbox"] + label::before{
     right: .6em;    
 }
 
-input[type="checkbox"]:checked + label::before{
+.statusSheet input[type="checkbox"]:checked + label::before{
     transform: rotate(-45deg);
 }
 
-.section {
+.statusSheet .section {
     max-height: 5em;
     overflow-y: scroll;
 }
