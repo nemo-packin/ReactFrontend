@@ -6,21 +6,9 @@ import Register from '../Components/Authentication/Register';
 import NavBar from '../Components/NavBar';
 
 const LandingPage = () => {
-  const [greeting, setGreeting] = useState('')
   const [login, setLogin] = useState(false)
   const [register, setRegister] = useState(false)
   const [logoutMsg, setLogoutMsg] = useState(false)
-
-  useEffect(() => {
-    // Fetch data from backend API when component mounts
-    axios.get('http://localhost:8080/')
-      .then(response => {
-        setGreeting(response.data);
-      })
-      .catch(error => {
-        console.error('Error fetching data:', error);
-      });
-  }, []);
 
   function logout() {
     axios.post('http://localhost:8080/api/logout')

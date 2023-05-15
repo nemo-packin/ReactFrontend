@@ -3,11 +3,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck, faTimes, faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 // import { hashString } from 'react-hash-string';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 const USER_REQ_REGEX = /^[a-zA-Z][a-zA-X0-9-_]{4,23}$/;
 const PASSWORD_REQ_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%&]){1,24}/;
+
 
 const Register = () => {
     const { handleSubmit } = useForm()
