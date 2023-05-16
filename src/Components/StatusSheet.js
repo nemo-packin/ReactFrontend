@@ -11,7 +11,7 @@ const StatusSheet = (props) => {
   useEffect(() => {
     async function fetchData() {
       const result = await axios.get('http://localhost:8080/api/statusSheet');
-      console.log(result.data.reqs);
+      console.log(`result: ${result}`);
       setPrevCourses(result.data.courses);
       setReqs(result.data.reqs);
     }
