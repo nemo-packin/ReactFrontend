@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react'
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 const Login = () => {
   const [errMsg, setErrMsg] = useState('')
@@ -23,7 +23,7 @@ const Login = () => {
           navigate('/StudentHome')
         } else if (response.data === 'admin') {
           navigate('/AdminHome')
-        } else if (response.data === 'already logged in!'){
+        } else if (response.data === 'already logged in!') {
           setErrMsg("Already logged in!")
         } else { setErrMsg("INVALID LOGIN") }
       })
@@ -39,7 +39,7 @@ const Login = () => {
   }
 
   return (
-    <section>
+    <section className='mx-auto bg-red-600'>
       <p ref={errRef} className={errMsg ? 'errmsg' : 'offscreen'} aria-live='assertive'>{errMsg}</p>
       <h1>Sign In</h1>
       <form onSubmit={handleLogin}>
@@ -66,6 +66,12 @@ const Login = () => {
         />
         <button className='bg-green-600 m-2 w-100 rounded-none'>Sign In</button>
       </form>
+      <p>
+        Need an Account? <br />
+        <span className='line'>
+          <Link to='/Register'>Register</Link>
+        </span>
+      </p>
     </section>
   )
 }

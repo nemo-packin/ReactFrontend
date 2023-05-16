@@ -1,5 +1,5 @@
 .content-center button {
-    background-color: #da1e1eef;
+    background-color: #13830eef;
     color: #fff;
     border: none;
     border-radius: 4px;
@@ -14,7 +14,7 @@
   }
   
   .content-center button:hover {
-    background-color: #a31515ef;
+    background-color: #1ca315ef;
   }
 
   .content-center input {

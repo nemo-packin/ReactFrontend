@@ -20,8 +20,13 @@ const NavBar = (props) => {
       .catch((error) => {
         console.log(error)
       })
+  }
 
-
+  function logout() {
+    axios.post('http://localhost:8080/api/logout')
+    .then(() => {
+      changePage("/")
+    })
   }
 
   return (
@@ -33,18 +38,18 @@ const NavBar = (props) => {
           </div>
           <div className="flex">
             {props.userType === '' ? (
-              <button onClick={() => { changePage("/") }} className="px-3 py-2 rounded-md text-sm font-medium text-white hover:bg-red-700 focus:outline-none focus:bg-red-700 focus:ring-2 focus:ring-offset-2 focus:ring-offset-red-600 focus:ring-white">Login</button>
+              <button onClick={() => { changePage("/Register") }} className="px-3 py-2 rounded-md text-sm font-medium text-white hover:bg-red-700 focus:outline-none focus:bg-red-700 focus:ring-2 focus:ring-offset-2 focus:ring-offset-red-600 focus:ring-white">Register</button>
             ) : (
               props.userType === 'student' ? (
                 <>
                   <button onClick={() => { changePage("/StudentHome") }} className="px-3 py-2 rounded-md text-sm font-medium text-white hover:bg-red-700 focus:outline-none focus:bg-red-700 focus:ring-2 focus:ring-offset-2 focus:ring-offset-red-600 focus:ring-white">Student Home</button>
                   <button onClick={() => { changePage("/CourseSearch") }} className="px-3 py-2 rounded-md text-sm font-medium text-white hover:bg-red-700 focus:outline-none focus:bg-red-700 focus:ring-2 focus:ring-offset-2 focus:ring-offset-red-600 focus:ring-white">Search Page</button>
-                  <button onClick={() => { changePage("/") }} className="px-3 py-2 rounded-md text-sm font-medium text-white hover:bg-red-700 focus:outline-none focus:bg-red-700 focus:ring-2 focus:ring-offset-2 focus:ring-offset-red-600 focus:ring-white">Login</button>
+                  <button onClick={() => { logout() }} className="px-3 py-2 rounded-md text-sm font-medium text-white hover:bg-red-700 focus:outline-none focus:bg-red-700 focus:ring-2 focus:ring-offset-2 focus:ring-offset-red-600 focus:ring-white">Logout</button>
                 </>
               ) : (
                 <>
                   <button onClick={() => { changePage("/AdminHome") }} className="px-3 py-2 rounded-md text-sm font-medium text-white hover:bg-red-700 focus:outline-none focus:bg-red-700 focus:ring-2 focus:ring-offset-2 focus:ring-offset-red-600 focus:ring-white">Admin Home</button>
-                  <button onClick={() => { changePage("/") }} className="px-3 py-2 rounded-md text-sm font-medium text-white hover:bg-red-700 focus:outline-none focus:bg-red-700 focus:ring-2 focus:ring-offset-2 focus:ring-offset-red-600 focus:ring-white">Login</button>
+                  <button onClick={() => { logout() }} className="px-3 py-2 rounded-md text-sm font-medium text-white hover:bg-red-700 focus:outline-none focus:bg-red-700 focus:ring-2 focus:ring-offset-2 focus:ring-offset-red-600 focus:ring-white">Logout</button>
                 </>
               )
             )}
